@@ -41,9 +41,11 @@
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	target.set_facial_hairstyle("Shaved", update = FALSE)
-	target.set_hairstyle("Bald", update = FALSE)
-	target.update_body_parts()
+	if(ishuman(target))
+		var/mob/living/carbon/human/heathen
+		heathen.set_facial_hairstyle("Shaved", update = FALSE)
+		heathen.set_hairstyle("Bald", update = FALSE)
+		heathen.update_body_parts()
 
 
 /datum/heretic_knowledge/spell/antagroll
