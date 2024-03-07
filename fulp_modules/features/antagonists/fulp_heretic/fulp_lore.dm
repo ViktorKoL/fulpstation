@@ -25,9 +25,10 @@
 
 
 /datum/heretic_knowledge/fulp_grasp
-	name = "Grasp of Fulp"
-	desc = "Your Mansus Grasp will now render the victim bald."
-	gain_text = "Haha bald! You are bald."
+	name = "Grasp of Bwoink"
+	desc = "Your Mansus Grasp will now bwoink the victim."
+	gain_text = "The Moderators rule the world of Fulp with their dark knowledge and mastery of the soul... \
+		This is a little piece of their unimaginable power..."
 	next_knowledge = list(/datum/heretic_knowledge/spell/antagroll)
 	cost = 1
 	route = PATH_FULP
@@ -41,11 +42,8 @@
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	if(ishuman(target))
-		var/mob/living/carbon/human/heathen
-		heathen.set_facial_hairstyle("Shaved", update = FALSE)
-		heathen.set_hairstyle("Bald", update = FALSE)
-		heathen.update_body_parts()
+	//the following line, including the comment, is copied from the banhammer code:
+	playsound(loc, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
 
 
 /datum/heretic_knowledge/spell/antagroll
