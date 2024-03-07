@@ -17,13 +17,6 @@
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade_lefthand.dmi'
 	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade_righthand.dmi'
 
-/obj/item/melee/sickly_blade/examine(mob/user)
-	. = ..()
-	if(!IS_HERETIC_OR_MONSTER(user))
-		return
-
-	. += span_notice("You can take a bite out of the blade to teleport to a random, (mostly) safe location.")
-
 /obj/item/melee/sickly_blade/beef/attack(mob/living/M, mob/living/user)
 	var/lived = !CAN_SUCCUMB(M)
 
