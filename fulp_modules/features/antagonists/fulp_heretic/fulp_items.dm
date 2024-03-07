@@ -6,8 +6,7 @@
 	inhand_icon_state = "rust_blade"
 	after_use_message = "Tom Fulp hears your call..."
 
-	//idk what the meat sound is yet
-	//hitsound = 'sound'
+	hitsound = 'sound/effects/meatslap.ogg'
 	attack_verb_continuous = list("beefs")
 	attack_verb_simple = list("beef")
 
@@ -38,5 +37,5 @@
 		to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
 	else
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
-	//change this to meat sound please, future me
-	playsound(src, SFX_SHATTER, 70, TRUE)
+
+	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)

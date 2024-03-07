@@ -43,7 +43,7 @@
 	SIGNAL_HANDLER
 
 	//the following line, including the comment, is copied from the banhammer code:
-	playsound(loc, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
+	playsound(target, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
 
 
 /datum/heretic_knowledge/spell/antagroll
