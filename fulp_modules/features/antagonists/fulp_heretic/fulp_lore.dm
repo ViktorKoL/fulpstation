@@ -28,7 +28,7 @@
 	name = "Grasp of Fulp"
 	desc = "Your Mansus Grasp will now render the victim bald."
 	gain_text = "Haha bald! You are bald."
-	next_knowledge = list(/datum/heretic_knowledge/spell/ash_passage)
+	next_knowledge = list(/datum/heretic_knowledge/spell/antagroll)
 	cost = 1
 	route = PATH_FULP
 
@@ -45,20 +45,23 @@
 	target.set_hairstyle("Bald", update = FALSE)
 	target.update_body_parts()
 
-/*
-/datum/heretic_knowledge/spell/ash_passage
-	name = "Ashen Passage"
-	desc = "Grants you Ashen Passage, a silent but short range jaunt."
-	gain_text = "He knew how to walk between the planes."
+
+/datum/heretic_knowledge/spell/antagroll
+	name = "Mentors' Basement"
+	desc = "Grants you Rolling of the Antagonist, a spell that can only be cast in the vacuum of space. \
+		It will render you immaterial and invisible for a <b>long</b> time, allowing you to bypass any obstacles."
+	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
+		even if that way was straight into the all-encompassing void."
 	next_knowledge = list(
 		/datum/heretic_knowledge/mark/ash_mark,
 		/datum/heretic_knowledge/summon/fire_shark,
 		/datum/heretic_knowledge/medallion,
 	)
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
+	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
 	cost = 1
-	route = PATH_ASH
+	route = PATH_FULP
 
+/*
 /datum/heretic_knowledge/mark/ash_mark
 	name = "Mark of Ash"
 	desc = "Your Mansus Grasp now applies the Mark of Ash. The mark is triggered from an attack with your Ashen Blade. \
