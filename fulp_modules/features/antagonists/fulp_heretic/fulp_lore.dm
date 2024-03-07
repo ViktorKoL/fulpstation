@@ -13,7 +13,7 @@
 		Allows you to transmute any meat and a knife into the beefblade. \
 		You can only create one at a time. \
 		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location."
-	gain_text = "Thomas Charles Fulp (born April 30, 1978) is an American programmer known for creating the website Newgrounds and co-founding the video game company The Behemoth."
+	gain_text = "I have met a peculiar man today, a man made of beef. He claimed to work his job at fulpstation, and promised to show me around."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -26,11 +26,8 @@
 
 /datum/heretic_knowledge/fulp_grasp
 	name = "Grasp of Fulp"
-	desc = "Your Mansus Grasp will cause the victim to fulp."
-	gain_text = "Fulp has been credited with \"changing the landscape of the Internet forever\" \
-		by kickstarting the browser game scene in the late 1990s, both with the releases of his own \
-		advanced Flash games and the launch of the Newgrounds Portal, which made Newgrounds one \
-		of the first sites that allowed creators to easily share their creations with a large online audience."
+	desc = "Your Mansus Grasp will now render the victim bald."
+	gain_text = "Haha bald! You are bald."
 	next_knowledge = list(/datum/heretic_knowledge/spell/ash_passage)
 	cost = 1
 	route = PATH_FULP
@@ -43,7 +40,10 @@
 
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
-	SEND_SOUND(source, 'sound/effects/adminhelp.ogg')
+
+	target.set_facial_hairstyle("Shaved", update = FALSE)
+	target.set_hairstyle("Bald", update = FALSE)
+	target.update_body_parts()
 
 /*
 /datum/heretic_knowledge/spell/ash_passage
