@@ -83,7 +83,7 @@
 						/obj/item/melee/sickly_blade/beef = 2,
 						)
 
-
+/*
 /datum/heretic_knowledge/spell/fire_blast
 	name = "Volcano Blast"
 	desc = "Grants you Volcano Blast, a spell that - after a short charge - fires off a beam of energy \
