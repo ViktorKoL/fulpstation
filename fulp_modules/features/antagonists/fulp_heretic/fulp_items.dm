@@ -38,7 +38,7 @@
 			to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
 			feeder.say("This server is out to get me")
 		else
-			to_chat(eater, span_warning("As you are fed [src], you feel a gust of energy flow through your body. Unknown forces grasp you and you wind up somewhere completely different..."))
+			to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. Unknown forces grasp you and you wind up somewhere completely different..."))
 			feeder.say("GEY AWAY FROM ME YOU GREIFING PRICK!!!!!")
 	else
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
