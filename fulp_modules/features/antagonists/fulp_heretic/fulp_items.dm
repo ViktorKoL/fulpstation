@@ -34,11 +34,13 @@
 /obj/item/melee/sickly_blade/beef/proc/took_bite(mob/eater, mob/feeder)
 	var/turf/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 	if(do_teleport(eater, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
-		to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
+		if(eater == feeder)
+			to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
+			feeder.say("This server is out to get me")
+		else
+			to_chat(eater, span_warning("As you are fed [src], you feel a gust of energy flow through your body. Unknown forces grasp you and you wind up somewhere completely different..."))
+			feeder.say("GEY AWAY FROM ME YOU GREIFING PRICK!!!!!")
 	else
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
-
-	if(eater == feeder)
-		eater.say("This server is out to get me")
 
 	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)
