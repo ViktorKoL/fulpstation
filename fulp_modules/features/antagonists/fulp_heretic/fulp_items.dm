@@ -29,13 +29,16 @@
 
 /obj/item/melee/sickly_blade/beef/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/edible, initial_reagents = list(/datum/reagent/consumable/nutriment = 10), foodtypes = MEAT | GROSS, after_eat = CALLBACK(src, PROC_REF(took_bite)))
+	AddComponent(/datum/component/edible, initial_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/eldritch = 5), foodtypes = MEAT | GROSS, after_eat = CALLBACK(src, PROC_REF(took_bite)))
 
-/obj/item/melee/sickly_blade/beef/proc/took_bite(mob/eater)
+/obj/item/melee/sickly_blade/beef/proc/took_bite(mob/eater, mob/feeder)
 	var/turf/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 	if(do_teleport(eater, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
 		to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
 	else
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
+
+	if(eater == feeder)
+		eater.say("This server is out to get me")
 
 	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)
