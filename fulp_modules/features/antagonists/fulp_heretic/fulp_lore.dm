@@ -11,7 +11,7 @@
 	name = "The Man of Beef"
 	desc = "Opens up the Path of Fulp to you. \
 		Allows you to transmute any meat and a knife into the beefblade. \
-		You can only create one at a time. \
+		You can only create two at a time. \
 		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location."
 	gain_text = "I have met a peculiar man today, a man made of beef. He claimed to work his job at fulpstation, and promised to show me around."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
@@ -19,7 +19,6 @@
 		/obj/item/knife = 1,
 		/obj/item/food/meat = 1,
 	)
-	limit = 1
 	result_atoms = list(/obj/item/melee/sickly_blade/beef)
 	route = PATH_FULP
 
@@ -68,14 +67,21 @@
 		When triggered, the victim will themselves become a beefman."
 	gain_text = "The Beefman has showed me the secrets to Fulpstation's all-natural top quality beef, \
 		and the ways to conjure it into this plane."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/ash)
+	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/fulp)
 	route = PATH_FULP
 	mark_type = /datum/status_effect/eldritch/beef
 
-/*
-/datum/heretic_knowledge/knowledge_ritual/ash
+
+/datum/heretic_knowledge/knowledge_ritual/fulp
 	next_knowledge = list(/datum/heretic_knowledge/spell/fire_blast)
-	route = PATH_ASH
+	route = PATH_FULP
+
+/datum/heretic_knowledge/knowledge_ritual/New()
+	. = ..()
+
+	required_atoms = list(/obj/item/food/meat = 3,
+						/obj/item/melee/sickly_blade/beef = 2,
+						)
 
 
 /datum/heretic_knowledge/spell/fire_blast
