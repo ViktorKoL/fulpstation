@@ -49,11 +49,11 @@
 /datum/heretic_knowledge/spell/antagroll
 	name = "Mentors' Basement"
 	desc = "Grants you Rolling of the Antagonist, a spell that can only be cast in the vacuum of space. \
-		It will render you immaterial and invisible for a <b>long</b> time, allowing you to bypass any obstacles."
+		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even if that way was straight into the all-encompassing void."
 	next_knowledge = list(
-		/datum/heretic_knowledge/mark/ash_mark,
+		/datum/heretic_knowledge/mark/beef_mark,
 		/datum/heretic_knowledge/summon/fire_shark,
 		/datum/heretic_knowledge/medallion,
 	)
@@ -61,34 +61,22 @@
 	cost = 1
 	route = PATH_FULP
 
-/*
-/datum/heretic_knowledge/mark/ash_mark
-	name = "Mark of Ash"
-	desc = "Your Mansus Grasp now applies the Mark of Ash. The mark is triggered from an attack with your Ashen Blade. \
-		When triggered, the victim takes additional stamina and burn damage, and the mark is transferred to a nearby heathen. \
-		Damage dealt is decreased with each transfer. \
-		Triggering the mark will also greatly reduce the cooldown of your Mansus Grasp."
-	gain_text = "He was a very particular man, always watching in the dead of night. \
-		But in spite of his duty, he regularly tranced through the Manse with his blazing lantern held high. \
-		He shone brightly in the darkness, until the blaze begin to die."
+
+/datum/heretic_knowledge/mark/beef_mark
+	name = "Mark of Beef"
+	desc = "Your Mansus Grasp now applies the Mark of Beef. The mark is triggered from an attack with your Beefy Blade. \
+		When triggered, the victim will themselves become a beefman."
+	gain_text = "The Beefman has showed me the secrets to Fulpstation's all-natural top quality beef, \
+		and the ways to conjure it into this plane."
 	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/ash)
-	route = PATH_ASH
-	mark_type = /datum/status_effect/eldritch/ash
+	route = PATH_FULP
+	mark_type = /datum/status_effect/eldritch/beef
 
-/datum/heretic_knowledge/mark/ash_mark/trigger_mark(mob/living/source, mob/living/target)
-	. = ..()
-	if(!.)
-		return
-
-	// Also refunds 75% of charge!
-	var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in source.actions
-	if(grasp)
-		grasp.next_use_time -= round(grasp.cooldown_time*0.75)
-		grasp.build_all_button_icons()
-
+/*
 /datum/heretic_knowledge/knowledge_ritual/ash
 	next_knowledge = list(/datum/heretic_knowledge/spell/fire_blast)
 	route = PATH_ASH
+
 
 /datum/heretic_knowledge/spell/fire_blast
 	name = "Volcano Blast"
