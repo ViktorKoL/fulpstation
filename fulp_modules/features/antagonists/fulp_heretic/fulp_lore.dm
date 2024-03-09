@@ -41,8 +41,8 @@
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	//the following line, including the comment, is copied from the banhammer code:
-	playsound(target, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
+	//full volume because evil. Maybe too evil? I don't know
+	playsound(target, 'sound/effects/adminhelp.ogg')
 
 
 /datum/heretic_knowledge/spell/antagroll
@@ -51,11 +51,7 @@
 		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even if that way was straight into the all-encompassing void."
-	next_knowledge = list(
-		/datum/heretic_knowledge/mark/beef_mark,
-		/datum/heretic_knowledge/summon/fire_shark,
-		/datum/heretic_knowledge/medallion,
-	)
+	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
 	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
 	cost = 1
 	route = PATH_FULP
@@ -79,9 +75,10 @@
 /datum/heretic_knowledge/knowledge_ritual/New()
 	. = ..()
 
-	required_atoms = list(/obj/item/food/meat = 3,
-						/obj/item/melee/sickly_blade/beef = 2,
-						)
+	required_atoms = list(
+		/obj/item/food/meat = 3,
+		/obj/item/melee/sickly_blade/beef = 2,
+	)
 
 /*
 /datum/heretic_knowledge/spell/fire_blast
