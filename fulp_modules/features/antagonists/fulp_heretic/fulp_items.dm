@@ -45,6 +45,14 @@
 
 	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)
 
+/*
+/obj/item/melee/sickly_blade/beef/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, gentle = FALSE, quickstart = TRUE)
+
+
+/obj/item/melee/sickly_blade/beef/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(isliving(hit_atom))
+		took_bite(hit_atom, )
+*/
 
 /obj/item/food/salad/eldritch
 	name = "4 point pops balanced breakfast"

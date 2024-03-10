@@ -143,7 +143,7 @@
 		I don't know what it does. I can't think of a funny here."
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
-		/datum/heretic_knowledge/blade_upgrade/ash,
+		/datum/heretic_knowledge/blade_upgrade/fulp,
 		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/spell/space_phase,
 		/datum/heretic_knowledge/curse/paralysis,
@@ -158,38 +158,30 @@
 	cost = 1
 	route = PATH_FULP
 
-/*
-/datum/heretic_knowledge/blade_upgrade/ash
-	name = "Fiery Blade"
-	desc = "Your blade now lights enemies ablaze on attack."
-	gain_text = "He returned, blade in hand, he swung and swung as the ash fell from the skies. \
-		His city, the people he swore to watch... and watch he did, as they all burnt to cinders."
-	next_knowledge = list(/datum/heretic_knowledge/spell/flame_birth)
-	route = PATH_ASH
 
-/datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	if(source == target)
-		return
+/datum/heretic_knowledge/blade_upgrade/fulp
+	name = "Tasty Blade"
+	desc = "Your blades can now be thrown to force feed them to people. Actually no, they can't yet."
+	gain_text = "My enemies shall taste my wrath..."
+	next_knowledge = list(/datum/heretic_knowledge/summon/pony)
+	route = PATH_FULP
 
-	target.adjust_fire_stacks(1)
-	target.ignite_mob()
 
-/datum/heretic_knowledge/spell/flame_birth
-	name = "Nightwatcher's Rebirth"
-	desc = "Grants you Nightwatcher's Rebirth, a spell that extinguishes you and \
-		burns all nearby heathens who are currently on fire, healing you for every victim afflicted. \
-		If any victims afflicted are in critical condition, they will also instantly die."
-	gain_text = "The fire was inescapable, and yet, life remained in his charred body. \
-		The Nightwatcher was a particular man, always watching."
-	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/ash_final,
-		/datum/heretic_knowledge/summon/ashy,
-		/datum/heretic_knowledge/eldritch_coin,
+/datum/heretic_knowledge/summon/pony
+	name = "Call of the Herd"
+	desc = "Allows you to transmute two right legs and two left legs to create a pony."
+	gain_text = "The Administrators showed me the tools of their craft, and the ways of creation of monsters I would never have imagined before."
+	next_knowledge = list(/datum/heretic_knowledge/ultimate/ash_final)
+	required_atoms = list(
+		/obj/item/bodypart/leg/right = 2,
+		/obj/item/bodypart/leg/left = 2,
 	)
-	spell_to_add = /datum/action/cooldown/spell/aoe/fiery_rebirth
+	mob_to_summon = /mob/living/basic/heretic_summon/pony
 	cost = 1
-	route = PATH_ASH
+	route = PATH_FULP
+	poll_ignore_define = POLL_IGNORE_HERETIC_MONSTER
 
+/*
 /datum/heretic_knowledge/ultimate/ash_final
 	name = "Ashlord's Rite"
 	desc = "The ascension ritual of the Path of Ash. \
