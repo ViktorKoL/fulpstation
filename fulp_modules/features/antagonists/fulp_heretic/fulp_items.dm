@@ -44,3 +44,19 @@
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
 
 	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)
+
+
+/obj/item/food/salad/eldritch
+	name = "4 point pops"
+	desc = "Crunchy, sweetened, eyeball-shaped corn cereal! A balanced breakfast straight from the depths of Mansus, all organically sourced from the Wood."
+	icon_state = "validsalad"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/eldritch = 5)
+	tastes = list("milk" = 1, "cereal" = 1, "Ag'hsj'saje'sh" = 1)
+	foodtypes = DAIRY | SUGAR | GRAIN | BREAKFAST
+
+/obj/item/food/salad/eldritch/examine(mob/user)
+	. = ..()
+	if(!IS_HERETIC_OR_MONSTER(user))
+		return
+
+	. += span_hypnophrase("It's a breakfast cereal. There's barely anything supernatural about it.")

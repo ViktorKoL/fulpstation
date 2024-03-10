@@ -42,7 +42,7 @@
 	SIGNAL_HANDLER
 
 	//full volume because evil. Maybe too evil? I don't know
-	playsound(target, 'sound/effects/adminhelp.ogg')
+	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
 /datum/heretic_knowledge/spell/antagroll
@@ -63,23 +63,67 @@
 		When triggered, the victim will themselves become a beefman."
 	gain_text = "The Beefman has showed me the secrets to Fulpstation's all-natural top quality beef, \
 		and the ways to conjure it into this plane."
-	next_knowledge = list(/datum/heretic_knowledge/knowledge_ritual/fulp)
+	next_knowledge = list(/datum/heretic_knowledge/breakfast_ritual)
 	route = PATH_FULP
 	mark_type = /datum/status_effect/eldritch/beef
 
 
-/datum/heretic_knowledge/knowledge_ritual/fulp
+/datum/heretic_knowledge/breakfast_ritual
+	name = "Ritual of Knowledge"
+	desc = "A transmutation ritual that rewards 4 points and can only be completed once."
+	gain_text = "Everything can be a key to a balanced breakfast. I must be wary and wise."
+	abstract_parent_type = /datum/heretic_knowledge/knowledge_ritual
+	mutually_exclusive = TRUE
+	cost = 1
+	priority = MAX_KNOWLEDGE_PRIORITY - 10
+	var/was_completed = FALSE
+
 	next_knowledge = list(/datum/heretic_knowledge/spell/fire_blast)
 	route = PATH_FULP
 
-/datum/heretic_knowledge/knowledge_ritual/New()
-	. = ..()
-
 	required_atoms = list(
-		/obj/item/food/meat = 3,
-		/obj/item/melee/sickly_blade/beef = 2,
+		/obj/item/food/branrequests = 1,
+		/obj/item/reagent_containers/condiment/milk = 1,
+		/obj/item/food/meat/bacon = 1,
+		/obj/item/food/friedegg = 2,
+		/obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice = 1,
 	)
 
+	result_atoms = list(/obj/item/food/salad/eldritch)
+
+/datum/heretic_knowledge/breakfast_ritual/on_research(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
+
+	var/list/requirements_string = list()
+
+	to_chat(user, span_hierophant("The [name] requires the following:"))
+	for(var/obj/item/path as anything in required_atoms)
+		var/amount_needed = required_atoms[path]
+		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]\s..."))
+		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
+
+	to_chat(user, span_hierophant("Completing it will reward you 4 points. You can check the knowledge in your Researched Knowledge to be reminded."))
+
+	desc = "Allows you to transmute [english_list(requirements_string)] for 4 points. This can only be completed once."
+
+/datum/heretic_knowledge/breakfast_ritual/can_be_invoked(datum/antagonist/heretic/invoker)
+	return !was_completed
+
+/datum/heretic_knowledge/breakfast_ritual/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	return !was_completed
+
+/datum/heretic_knowledge/breakfast_ritual/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	. = ..()
+
+	was_completed = TRUE
+	var/drain_message = "SPECIAL LIMITED EDITION CEREAL."
+	to_chat(user, span_boldnotice("[name] completed!"))
+	to_chat(user, span_hypnophrase(span_big("[drain_message]")))
+	desc += " (Completed!)"
+	log_heretic_knowledge("[key_name(user)] completed a [name] at [worldtime2text()].")
+	//TODO: custom breakfast memory
+	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
+	return
 /*
 /datum/heretic_knowledge/spell/fire_blast
 	name = "Volcano Blast"
