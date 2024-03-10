@@ -61,3 +61,8 @@
 		return
 
 	. += span_hypnophrase("It's a breakfast cereal. There's barely anything supernatural about it.")
+
+
+/obj/item/melee/baton/security/charged_batong
+	name = "batong (CHARGED)"
+	desc = "A twisted appendage resembling a normal security baton, at a glance. Some kind of charge can be felt in the air around its tip."

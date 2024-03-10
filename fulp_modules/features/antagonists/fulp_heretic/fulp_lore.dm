@@ -124,25 +124,24 @@
 	//TODO: custom breakfast memory
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return
-/*
+
 /datum/heretic_knowledge/spell/fire_blast
-	name = "Volcano Blast"
+	name = "Volcano Blast but fulp"
 	desc = "Grants you Volcano Blast, a spell that - after a short charge - fires off a beam of energy \
 		at a nearby enemy, setting them on fire and burning them. If they do not extinguish themselves, \
 		the beam will continue to another target."
 	gain_text = "No fire was hot enough to rekindle them. No fire was bright enough to save them. No fire is eternal."
-	next_knowledge = list(/datum/heretic_knowledge/mad_mask)
+	next_knowledge = list(/datum/heretic_knowledge/batong)
 	spell_to_add = /datum/action/cooldown/spell/charged/beam/fire_blast
 	cost = 1
-	route = PATH_ASH
+	route = PATH_FULP
 
 
-/datum/heretic_knowledge/mad_mask
-	name = "Mask of Madness"
-	desc = "Allows you to transmute any mask, four candles, a stun baton, and a liver to create a Mask of Madness. \
-		The mask instills fear into heathens who witness it, causing stamina damage, hallucinations, and insanity. \
-		It can also be forced onto a heathen, to make them unable to take it off..."
-	gain_text = "The Nightwatcher was lost. That's what the Watch believed. Yet he walked the world, unnoticed by the masses."
+/datum/heretic_knowledge/batong
+	name = "Charging of the Batong"
+	desc = "Allows you to transmute a stunbaton, a toy batong, a recharger and an arm to create a Charged Batong. \
+		I don't know what it does. I can't think of a funny here."
+	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/ash,
 		/datum/heretic_knowledge/reroll_targets,
@@ -150,15 +149,16 @@
 		/datum/heretic_knowledge/curse/paralysis,
 	)
 	required_atoms = list(
-		/obj/item/organ/internal/liver = 1,
-		/obj/item/melee/baton/security = 1,  // Technically means a cattleprod is valid
-		/obj/item/clothing/mask = 1,
-		/obj/item/flashlight/flare/candle = 4,
+		/obj/item/melee/baton/security = 1,
+		/obj/item/toy/plush/batong = 1,
+		/obj/machinery/recharger = 1,
+		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
-	result_atoms = list(/obj/item/clothing/mask/madness_mask)
+	result_atoms = list(/obj/item/melee/baton/security/charged_batong)
 	cost = 1
-	route = PATH_ASH
+	route = PATH_FULP
 
+/*
 /datum/heretic_knowledge/blade_upgrade/ash
 	name = "Fiery Blade"
 	desc = "Your blade now lights enemies ablaze on attack."
