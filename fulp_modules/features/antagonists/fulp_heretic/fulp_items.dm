@@ -10,7 +10,7 @@
 	attack_verb_continuous = list("beefs")
 	attack_verb_simple = list("beef")
 
-	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade.dmi'
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "blade"
 	inhand_icon_state = "blade"
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade_lefthand.dmi'
@@ -47,12 +47,13 @@
 
 
 /obj/item/food/salad/eldritch
-	name = "4 point pops"
-	desc = "Crunchy, sweetened, eyeball-shaped corn cereal! A balanced breakfast straight from the depths of Mansus, all organically sourced from the Wood."
-	icon_state = "validsalad"
+	name = "4 point pops balanced breakfast"
+	desc = "Crunchy, sweetened, eyeball-shaped corn cereal! Best served with bacon, eggs, and orange juice. A balanced breakfast straight from the depths of Mansus, all organically sourced from the Wood."
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
+	icon_state = "breakfast"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/eldritch = 5)
-	tastes = list("milk" = 1, "cereal" = 1, "Ag'hsj'saje'sh" = 1)
-	foodtypes = DAIRY | SUGAR | GRAIN | BREAKFAST
+	tastes = list("milk" = 1, "cereal" = 1, "bacon" = 1, "egg" = 1, "orange juice" = 1, "Ag'hsj'saje'sh" = 1)
+	foodtypes = DAIRY | SUGAR | GRAIN | BREAKFAST | MEAT | ORANGES | FRIED | SUGAR | FRUIT
 
 /obj/item/food/salad/eldritch/examine(mob/user)
 	. = ..()
