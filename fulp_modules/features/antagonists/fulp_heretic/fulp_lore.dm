@@ -195,6 +195,9 @@
 		I SUMMON HIM HERE!!!"
 	route = PATH_FOOL
 
+	//let's keep Tom saved
+	var/obj/tom_fulp/tom
+
 /datum/heretic_knowledge/ultimate/fulp_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
 	. = ..()
 	if(!.)
@@ -216,5 +219,5 @@
 		color_override = "pink",
 	)
 
-	var/obj/tom_fulp/tom = new /obj/tom_fulp(loc)
+	tom = new /obj/tom_fulp(loc)
 	tom.set_master(user)

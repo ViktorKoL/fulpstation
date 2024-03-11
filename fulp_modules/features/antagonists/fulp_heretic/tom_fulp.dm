@@ -2,8 +2,8 @@
 	name = "Tom Fulp"
 	gender = MALE
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
-	icon = 'icons/obj/antags/cult/narsie.dmi'
-	icon_state = "narsie"
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/tom_fulp.dmi'
+	icon_state = "tom_fulp"
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE
 	density = FALSE
@@ -57,19 +57,9 @@
 		if(victim_dna && !istype(victim_dna.species, /datum/species/beefman))
 			carbon_victim.set_species(/datum/species/beefman)
 
-/obj/tom_fulp/process()
-	if (prob(10))
-		mesmerize()
-
-/obj/tom_fulp/proc/mesmerize()
-	for (var/mob/living/carbon/victim in viewers(12, src))
-		if (victim.stat == CONSCIOUS)
-			if (!IS_HERETIC_OR_MONSTER(victim))
-				to_chat(victim, span_cult("You feel conscious thought crumble away in an instant as you gaze upon [src]..."))
-				victim.apply_effect(20, EFFECT_STUN)
-
+//I honestly don't know what this does exactly but I think it has to do with letting NarSie move freely so I'm gonna leave it as is
 /obj/tom_fulp/Bump(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if (target_turf == loc)
-		target_turf = get_step(target, target.dir) //please don't slam into a window like a bird, Nar'Sie
+		target_turf = get_step(target, target.dir) //please don't slam into a window like a bird, Tom
 	forceMove(target_turf)
