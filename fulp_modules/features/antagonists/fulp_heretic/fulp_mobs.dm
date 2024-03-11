@@ -48,7 +48,7 @@
 /mob/living/basic/heretic_summon/pony/Initialize(mapload)
 	. = ..()
 
-	grant_actions_by_list(grantable_spells)
+	grant_actions_by_list(actions_to_add)
 
 
 /mob/living/basic/heretic_summon/pony/random

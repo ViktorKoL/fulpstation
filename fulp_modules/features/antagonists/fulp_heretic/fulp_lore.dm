@@ -171,60 +171,50 @@
 	name = "Call of the Herd"
 	desc = "Allows you to transmute two right legs and two left legs to create a pony."
 	gain_text = "The Administrators showed me the tools of their craft, and the ways of creation of monsters I would never have imagined before."
-	next_knowledge = list(/datum/heretic_knowledge/ultimate/ash_final)
+	next_knowledge = list(/datum/heretic_knowledge/ultimate/fulp_final)
 	required_atoms = list(
 		/obj/item/bodypart/leg/right = 2,
 		/obj/item/bodypart/leg/left = 2,
 	)
-	mob_to_summon = /mob/living/basic/heretic_summon/pony
+	mob_to_summon = /mob/living/basic/heretic_summon/pony/random
 	cost = 1
 	route = PATH_FULP
 	poll_ignore_define = POLL_IGNORE_HERETIC_MONSTER
 
-/*
-/datum/heretic_knowledge/ultimate/ash_final
-	name = "Ashlord's Rite"
-	desc = "The ascension ritual of the Path of Ash. \
-		Bring 3 burning or husked corpses to a transmutation rune to complete the ritual. \
-		When completed, you become a harbinger of flames, gaining two abilites. \
-		Cascade, which causes a massive, growing ring of fire around you, \
-		and Oath of Flame, causing you to passively create a ring of flames as you walk. \
-		You will also become immune to flames, space, and similar environmental hazards."
-	gain_text = "The Watch is dead, the Nightwatcher burned with it. Yet his fire burns evermore, \
-		for the Nightwatcher brought forth the rite to mankind! His gaze continues, as now I am one with the flames, \
-		WITNESS MY ASCENSION, THE ASHY LANTERN BLAZES ONCE MORE!"
-	route = PATH_ASH
-	/// A static list of all traits we apply on ascension.
-	var/static/list/traits_to_apply = list(
-		TRAIT_BOMBIMMUNE,
-		TRAIT_NOBREATH,
-		TRAIT_NOFIRE,
-		TRAIT_RESISTCOLD,
-		TRAIT_RESISTHEAT,
-		TRAIT_RESISTHIGHPRESSURE,
-		TRAIT_RESISTLOWPRESSURE,
-	)
 
-/datum/heretic_knowledge/ultimate/ash_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
+/datum/heretic_knowledge/ultimate/fulp_final
+	name = "The Fulp Moment"
+	desc = "The ascension ritual of the Path of Fulp. \
+		Bring 3 beefman corpses to a transmutation rune to complete the ritual. \
+		When completed, HE ARRIVES"
+	gain_text = "Through the power of beef, the hamster answers to only me! This reality but an illusion, true nature be revealed! \
+		I SUMMON HIM HERE!!!"
+	route = PATH_FULP
+
+/datum/heretic_knowledge/ultimate/fulp_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
 	. = ..()
 	if(!.)
 		return
 
-	if(sacrifice.on_fire)
-		return TRUE
-	if(HAS_TRAIT_FROM(sacrifice, TRAIT_HUSK, BURN))
+	var/datum/dna/sac_dna = sacrifice.has_dna()
+	if(!sac_dna)
+		return FALSE
+	if(istype(sac_dna.species, /datum/species/beefman))
 		return TRUE
 	return FALSE
 
-/datum/heretic_knowledge/ultimate/ash_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+/datum/heretic_knowledge/ultimate/fulp_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] Fear the blaze, for the Ashlord, [user.real_name] has ascended! The flames shall consume all! [generate_heretic_text()]",
+		text = "[generate_heretic_text()] The ultimate fool [user.real_name] has ascended! The Fulp Moment is upon us! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",
 	)
 
+	new /obj/narsie/tom_fulp(loc)
+
+	/*
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
 	circle_spell.Grant(user)
 
@@ -243,4 +233,4 @@
 	user.client?.give_award(/datum/award/achievement/misc/ash_ascension, user)
 	if(length(traits_to_apply))
 		user.add_traits(traits_to_apply, MAGIC_TRAIT)
-*/
+	*/
