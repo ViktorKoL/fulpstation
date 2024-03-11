@@ -40,7 +40,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/pointed/ascend_door/is_valid_target(atom/cast_on)
-	if(is_type(cast_on,/obj/machinery/door))
+	if(istype(cast_on,/obj/machinery/door))
 		return TRUE
 	to_chat(owner, span_warning("You may only cast [src] on a door!"))
 	return FALSE

@@ -152,7 +152,7 @@
 		/obj/machinery/recharger = 1,
 		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
-	result_atoms = list(/obj/item/melee/baton/security/charged_batong)
+	result_atoms = list(/obj/item/melee/charged_batong)
 	cost = 1
 	route = PATH_FOOL
 
@@ -199,7 +199,7 @@
 
 /datum/heretic_knowledge/ultimate/fulp_final
 	name = "The Fulp Moment"
-	desc = "The ascension ritual of the Path of Fulp. \
+	desc = "The ascension ritual of the Path of Fool. \
 		Bring 3 beefman corpses to a transmutation rune to complete the ritual. \
 		When completed, HE ARRIVES"
 	gain_text = "Through the power of beef, the hamster answers to only me! This reality but an illusion, true nature be revealed! \
