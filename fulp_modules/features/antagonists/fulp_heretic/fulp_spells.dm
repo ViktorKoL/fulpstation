@@ -22,3 +22,25 @@
 	if(feedback)
 		to_chat(owner, span_warning("You must stand on a space or misc turf!"))
 	return FALSE
+
+
+/datum/action/cooldown/spell/pointed/ascend_door
+	name = "Awakening of Doors"
+	desc = "A door is a hinged or otherwise movable barrier that allows ingress (entry) into and egress (exit) from an enclosure. The created opening in the wall is a doorway or portal. A door's essential and primary purpose is to provide security by controlling access to the doorway (portal). Conventionally, it is a panel that fits into the doorway of a building, room, or vehicle. Doors are generally made of a material suited to the door's task. They are commonly attached by hinges, but can move by other means, such as slides or counterbalancing."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "ash_shift"
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 5 SECONDS
+
+	invocation = "A'I OP'N"
+	invocation_type = INVOCATION_WHISPER
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/ascend_door/is_valid_target(atom/cast_on)
+	if(is_type(cast_on,/obj/machinery/door))
+		return TRUE
+	to_chat(owner, span_warning("You may only cast [src] on a door!"))
+	return FALSE

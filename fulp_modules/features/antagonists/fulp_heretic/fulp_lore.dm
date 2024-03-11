@@ -28,7 +28,7 @@
 	desc = "Your Mansus Grasp will now bwoink the victim."
 	gain_text = "The Moderators rule the world of Fulp with their dark knowledge and mastery of the soul... \
 		This is just a little piece of their unimaginable power..."
-	next_knowledge = list(/datum/heretic_knowledge/spell/antagroll)
+	next_knowledge = list(/datum/heretic_knowledge/spell/door_open)
 	cost = 1
 	route = PATH_FOOL
 
@@ -45,14 +45,14 @@
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
-/datum/heretic_knowledge/spell/antagroll
-	name = "Mentors' Basement"
-	desc = "Grants you Rolling of the Antagonist, a spell that can only be cast in the vacuum of space. \
+/datum/heretic_knowledge/spell/door_open
+	name = "Doorways'"
+	desc = "Grants you Awakening of the Doors, a spell that can only be cast in the vacuum of space. \
 		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even if that way was straight into the all-encompassing void."
 	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
+	spell_to_add = /datum/action/cooldown/spell/pointed/ascend_door
 	cost = 1
 	route = PATH_FOOL
 
@@ -144,7 +144,7 @@
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,
-		/datum/heretic_knowledge/reroll_targets,
+		/datum/heretic_knowledge/spell/antagroll,
 	)
 	required_atoms = list(
 		/obj/item/melee/baton/security = 1,
@@ -153,6 +153,17 @@
 		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
 	result_atoms = list(/obj/item/melee/baton/security/charged_batong)
+	cost = 1
+	route = PATH_FOOL
+
+
+/datum/heretic_knowledge/spell/antagroll
+	name = "Mentors' Basement"
+	desc = "Grants you Rolling of the Antagonist, a spell that can only be cast in the vacuum of space. \
+		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
+	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
+		even if that way was straight into the all-encompassing void."
+	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
 	cost = 1
 	route = PATH_FOOL
 
