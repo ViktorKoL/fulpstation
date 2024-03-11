@@ -63,3 +63,8 @@
 	if (target_turf == loc)
 		target_turf = get_step(target, target.dir) //please don't slam into a window like a bird, Tom
 	forceMove(target_turf)
+
+/obj/tom_fulp/Destroy()
+	send_to_playing_players(span_narsie(span_bold(pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-"))))
+	sound_to_playing_players('sound/magic/demon_dies.ogg', 50)
+

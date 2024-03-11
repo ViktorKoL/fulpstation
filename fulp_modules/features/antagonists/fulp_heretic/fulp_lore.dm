@@ -221,3 +221,12 @@
 
 	tom = new /obj/tom_fulp(loc)
 	tom.set_master(user)
+
+	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/datum/heretic_knowledge/ultimate/fulp_final/proc/on_death(datum/source)
+	SIGNAL_HANDLER
+
+	if(tom)
+		qdel(tom)
+		tom = null
