@@ -164,11 +164,11 @@
 	next_knowledge = list(/datum/heretic_knowledge/summon/pony)
 	route = PATH_FOOL
 
-/datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+/datum/heretic_knowledge/blade_upgrade/fulp/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 	var/turf/location = get_turf(target)
 	if(isopenturf(location))
 		var/turf/open/ol = location
-		ol.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, 10 SECONDS)
+		ol.MakeSlippery(TURF_WET_LUBE, min_wet_time = 1 SECONDS, wet_time_to_add = 5 SECONDS)
 
 
 /datum/heretic_knowledge/summon/pony
