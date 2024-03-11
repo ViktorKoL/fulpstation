@@ -40,7 +40,7 @@
 	))
 
 	send_to_playing_players(span_narsie("TOM FULP HAS RISEN"))
-	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
+	sound_to_playing_players("fulp_modules/features/antagonists/fulp_heretic/sounds/tom_fulp_arrival.ogg")
 
 	theme = new /datum/dimension_theme/meat()
 
@@ -65,6 +65,8 @@
 	forceMove(target_turf)
 
 /obj/tom_fulp/Destroy()
+	. = ..()
+
 	send_to_playing_players(span_narsie(span_bold(pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-"))))
 	sound_to_playing_players('sound/magic/demon_dies.ogg', 50)
 
