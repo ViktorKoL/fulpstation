@@ -35,7 +35,7 @@
 		consume_range = 12, \
 		disregard_failed_movements = TRUE, \
 		grav_pull = 10, \
-		roaming = FALSE, /* This is set once the animation finishes */ \
+		roaming = TRUE \
 		singularity_size = 12, \
 	))
 

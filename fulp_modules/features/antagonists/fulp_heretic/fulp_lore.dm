@@ -166,7 +166,9 @@
 
 /datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 	var/turf/location = get_turf(target)
-	location.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, 10 SECONDS)
+	if(isopenturf(location))
+		var/turf/open/ol = location
+		ol.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, 10 SECONDS)
 
 
 /datum/heretic_knowledge/summon/pony
@@ -216,24 +218,3 @@
 
 	var/obj/tom_fulp/tom = new /obj/tom_fulp(loc)
 	tom.set_master(user)
-
-	/*
-	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
-	circle_spell.Grant(user)
-
-	var/datum/action/cooldown/spell/fire_cascade/big/screen_wide_fire_spell = new(user.mind)
-	screen_wide_fire_spell.Grant(user)
-
-	var/datum/action/cooldown/spell/charged/beam/fire_blast/existing_beam_spell = locate() in user.actions
-	if(existing_beam_spell)
-		existing_beam_spell.max_beam_bounces *= 2 // Double beams
-		existing_beam_spell.beam_duration *= 0.66 // Faster beams
-		existing_beam_spell.cooldown_time *= 0.66 // Lower cooldown
-
-	var/datum/action/cooldown/spell/aoe/fiery_rebirth/fiery_rebirth = locate() in user.actions
-	fiery_rebirth?.cooldown_time *= 0.16
-
-	user.client?.give_award(/datum/award/achievement/misc/ash_ascension, user)
-	if(length(traits_to_apply))
-		user.add_traits(traits_to_apply, MAGIC_TRAIT)
-	*/
