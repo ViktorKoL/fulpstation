@@ -78,7 +78,7 @@
 	priority = MAX_KNOWLEDGE_PRIORITY - 10
 	var/was_completed = FALSE
 
-	next_knowledge = list(/datum/heretic_knowledge/spell/fire_blast)
+	next_knowledge = list(/datum/heretic_knowledge/spell/hamster)
 	route = PATH_FULP
 
 	required_atoms = list(
@@ -125,7 +125,7 @@
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return
 
-/datum/heretic_knowledge/spell/fire_blast
+/datum/heretic_knowledge/spell/hamster
 	name = "Volcano Blast but fulp"
 	desc = "Grants you Volcano Blast, a spell that - after a short charge - fires off a beam of energy \
 		at a nearby enemy, setting them on fire and burning them. If they do not extinguish themselves, \
@@ -145,8 +145,6 @@
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,
 		/datum/heretic_knowledge/reroll_targets,
-		/datum/heretic_knowledge/spell/space_phase,
-		/datum/heretic_knowledge/curse/paralysis,
 	)
 	required_atoms = list(
 		/obj/item/melee/baton/security = 1,
@@ -212,7 +210,8 @@
 		color_override = "pink",
 	)
 
-	new /obj/narsie/tom_fulp(loc)
+	var/obj/tom_fulp/tom = new /obj/tom_fulp(loc)
+	tom.set_master(user)
 
 	/*
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
