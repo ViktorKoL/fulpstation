@@ -5,11 +5,11 @@
  *
  * Things
  */
-#define PATH_FULP "Fulp Path"
+#define PATH_FOOL "Fool Path"
 
 /datum/heretic_knowledge/limited_amount/starting/base_beef
-	name = "The Man of Beef"
-	desc = "Opens up the Path of Fulp to you. \
+	name = "The Foolish Butcher"
+	desc = "Opens up the Path of the Fool to you. \
 		Allows you to transmute any meat and a knife into the beefblade. \
 		You can only create two at a time. \
 		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location."
@@ -20,17 +20,17 @@
 		/obj/item/food/meat = 1,
 	)
 	result_atoms = list(/obj/item/melee/sickly_blade/beef)
-	route = PATH_FULP
+	route = PATH_FOOL
 
 
 /datum/heretic_knowledge/fulp_grasp
 	name = "Grasp of Bwoink"
 	desc = "Your Mansus Grasp will now bwoink the victim."
 	gain_text = "The Moderators rule the world of Fulp with their dark knowledge and mastery of the soul... \
-		This is a little piece of their unimaginable power..."
+		This is just a little piece of their unimaginable power..."
 	next_knowledge = list(/datum/heretic_knowledge/spell/antagroll)
 	cost = 1
-	route = PATH_FULP
+	route = PATH_FOOL
 
 /datum/heretic_knowledge/fulp_grasp/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
@@ -54,7 +54,7 @@
 	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
 	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
 	cost = 1
-	route = PATH_FULP
+	route = PATH_FOOL
 
 
 /datum/heretic_knowledge/mark/beef_mark
@@ -64,7 +64,7 @@
 	gain_text = "The Beefman has showed me the secrets to Fulpstation's all-natural top quality beef, \
 		and the ways to conjure it into this plane."
 	next_knowledge = list(/datum/heretic_knowledge/breakfast_ritual)
-	route = PATH_FULP
+	route = PATH_FOOL
 	mark_type = /datum/status_effect/eldritch/beef
 
 
@@ -79,7 +79,7 @@
 	var/was_completed = FALSE
 
 	next_knowledge = list(/datum/heretic_knowledge/spell/hamster)
-	route = PATH_FULP
+	route = PATH_FOOL
 
 	required_atoms = list(
 		/obj/item/food/branrequests = 1,
@@ -126,15 +126,15 @@
 	return
 
 /datum/heretic_knowledge/spell/hamster
-	name = "Volcano Blast but fulp"
-	desc = "Grants you Volcano Blast, a spell that - after a short charge - fires off a beam of energy \
-		at a nearby enemy, setting them on fire and burning them. If they do not extinguish themselves, \
-		the beam will continue to another target."
-	gain_text = "No fire was hot enough to rekindle them. No fire was bright enough to save them. No fire is eternal."
+	name = "Domain of the Hamster"
+	desc = "Grants you Hamster's Retreat - a spell that can open a portal to a pocket dimension, that anyone can travel through. \
+		You can only close this portal from outside, and even then, heathens may exit the dimension, appearing at a random location."
+	gain_text = "This world runs and turns only because of a being known as the Hamster. \
+		It runs in the Wheel, empowering the Server as long as its eternal task continues..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
 	spell_to_add = /datum/action/cooldown/spell/charged/beam/fire_blast
 	cost = 1
-	route = PATH_FULP
+	route = PATH_FOOL
 
 
 /datum/heretic_knowledge/batong
@@ -154,15 +154,19 @@
 	)
 	result_atoms = list(/obj/item/melee/baton/security/charged_batong)
 	cost = 1
-	route = PATH_FULP
+	route = PATH_FOOL
 
 
 /datum/heretic_knowledge/blade_upgrade/fulp
-	name = "Tasty Blade"
-	desc = "Your blades can now be thrown to force feed them to people. Actually no, they can't yet."
+	name = "Gravy Blade"
+	desc = "Your blades now create slippery tiles when hitting heathens."
 	gain_text = "My enemies shall taste my wrath..."
 	next_knowledge = list(/datum/heretic_knowledge/summon/pony)
-	route = PATH_FULP
+	route = PATH_FOOL
+
+/datum/heretic_knowledge/blade_upgrade/ash/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	var/turf/location = get_turf(target)
+	location.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, 10 SECONDS)
 
 
 /datum/heretic_knowledge/summon/pony
@@ -176,7 +180,7 @@
 	)
 	mob_to_summon = /mob/living/basic/heretic_summon/pony/random
 	cost = 1
-	route = PATH_FULP
+	route = PATH_FOOL
 	poll_ignore_define = POLL_IGNORE_HERETIC_MONSTER
 
 
@@ -187,7 +191,7 @@
 		When completed, HE ARRIVES"
 	gain_text = "Through the power of beef, the hamster answers to only me! This reality but an illusion, true nature be revealed! \
 		I SUMMON HIM HERE!!!"
-	route = PATH_FULP
+	route = PATH_FOOL
 
 /datum/heretic_knowledge/ultimate/fulp_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
 	. = ..()
