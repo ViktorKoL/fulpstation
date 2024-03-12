@@ -42,7 +42,25 @@
 	)
 
 	var/static/list/actions_to_add = list(
-		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll = BB_GENERIC_ACTION,
+		/datum/action/cooldown/spell/pointed/antagroll = BB_GENERIC_ACTION,
+	)
+
+	var/list/powers_by_name = list(
+		"applejack",
+		"clownie",
+		"dash",
+		"fleur",
+		"fluttershy",
+		"luna",
+		"lyra",
+		"mac",
+		"pinkie",
+		"rarity",
+		"tia",
+		"trixie",
+		"twilight",
+		"vinyl",
+		"whooves",
 	)
 
 /mob/living/basic/heretic_summon/pony/Initialize(mapload)
@@ -56,4 +74,7 @@
 /mob/living/basic/heretic_summon/pony/random/Initialize(mapload)
 	icon_state = "[pick(pony_skins)]"
 	name = capitalize(icon_state)
+	var/action = powers_by_name[icon_state]
+	var/datum/action/ability = new action(src)
+	ability.Grant(src)
 	return ..()

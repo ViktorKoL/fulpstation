@@ -77,12 +77,15 @@
 	force = 20
 	throw_speed = 0.01
 	throwforce = 100
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
+	icon_state = "batong"
 
 
 /obj/item/food/cake/fulp_ascension
 	name = "ascension cake"
 	desc = "Congratulations! We knew you can do it!"
-	icon_state = "birthdaycake"
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
+	icon_state = "cake"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/sprinkles = 5,
@@ -97,7 +100,8 @@
 /obj/item/food/cakeslice/fulp_ascension
 	name = "ascension cake slice"
 	desc = "Share the taste of godhood with your heretic friends."
-	icon_state = "birthdaycakeslice"
+	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
+	icon_state = "cake_slice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/sprinkles = 1,

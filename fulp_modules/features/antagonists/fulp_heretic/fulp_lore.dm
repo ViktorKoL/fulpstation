@@ -158,11 +158,10 @@
 
 
 /datum/heretic_knowledge/spell/antagroll
-	name = "Mentors' Basement"
-	desc = "Grants you Rolling of the Antagonist, a spell that can only be cast in the vacuum of space. \
-		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
+	name = "Technique of the Mentors"
+	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
-		even if that way was straight into the all-encompassing void."
+		even throwing themselves into the gaping expanse of the void... But they did learn this lesson from it..."
 	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
 	route = PATH_FOOL

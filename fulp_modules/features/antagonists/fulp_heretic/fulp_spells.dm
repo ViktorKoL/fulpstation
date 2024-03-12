@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
-	name = "Rolling of the Antagonist"
+	name = "Rolling of the Antagonist (OLD)"
 	desc = "A spell that allows you pass unimpeded through some walls. Might be short, might be long, the forces of the Roll are unpredictable."
 	invocation = "I wanna antagroll"
 	invocation_type = INVOCATION_SHOUT
@@ -26,7 +26,7 @@
 
 /datum/action/cooldown/spell/pointed/antagroll
 	name = "Rolling of the Antagonist"
-	desc = "Roll over, crushing anyone in your way."
+	desc = "Call on the forbidden powers of the Mansus to roll over, crushing anyone in your way."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
@@ -39,15 +39,21 @@
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 
-	active_msg = span_notice("We prepare to roll.")
-	deactive_msg = span_notice("One may not roll while the Moderators are watching...")
+	active_msg = span_notice("We prepare to antagroll.")
+	deactive_msg = span_notice("Not now, They might be watching...")
 
 	var/rolling_speed = 0.25 SECONDS
 
 /datum/action/cooldown/spell/pointed/antagroll/cast(atom/cast_on)
 	. = ..()
-	if (owner.body_position == LYING_DOWN || !isturf(owner.loc))
+
+	if(!isturf(owner.loc))
 		return FALSE
+
+	if(isliving(owner))
+		var/mob/living/living_owner = owner
+		if(living_owner.body_position == LYING_DOWN)
+			return FALSE
 
 	var/turf/target = get_turf(cast_on)
 	if (isnull(target))
@@ -64,18 +70,23 @@
 
 	new /obj/effect/temp_visual/telegraphing/vending_machine_tilt(temp_target, rolling_speed)
 	owner.balloon_alert_to_viewers("rolling...")
-	addtimer(CALLBACK(src, PROC_REF(do_roll_over), owner, picked_dir), rolling_speed)
+	addtimer(CALLBACK(src, PROC_REF(do_roll_over), picked_dir), rolling_speed)
 
-/datum/action/cooldown/spell/pointed/antagroll/proc/do_roll_over(owner, picked_dir)
-	if (owner.body_position == LYING_DOWN || !isturf(owner.loc))
+/datum/action/cooldown/spell/pointed/antagroll/proc/do_roll_over(picked_dir)
+	if(!isturf(owner.loc))
 		return
+
+	if(isliving(owner))
+		var/mob/living/living_owner = owner
+		if(living_owner.body_position == LYING_DOWN)
+			return
 
 	var/turf/target = get_step(owner, picked_dir) // in case we moved we pass the dir not the target turf
 
 	if (isnull(target))
 		return
 
-	return owner.fall_and_crush(target, 25, 10, null, 5 SECONDS, picked_dir, rotation = get_rotation_from_dir(picked_dir))
+	return owner.fall_and_crush(target, 25, 10, null, 5 SECONDS, picked_dir)
 
 
 /datum/action/cooldown/spell/pointed/ascend_door

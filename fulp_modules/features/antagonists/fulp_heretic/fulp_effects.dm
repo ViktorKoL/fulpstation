@@ -3,8 +3,16 @@
 
 /datum/status_effect/eldritch/beef/on_effect()
 	if(iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.set_species(/datum/species/beefman)
-		to_chat(owner, span_warning("Congratulations! You've become a beefman."))
+		var/mob/living/carbon/carbon_victim = owner
+		var/datum/dna/victim_dna = carbon_victim.has_dna()
+		if(victim_dna)
+			if(!istype(victim_dna.species, /datum/species/beefman))
+				carbon_victim.set_species(/datum/species/beefman)
+				to_chat(owner, span_warning("Congratulations! You've become a beefman."))
+			else
+				//make meat tiles around
+				for(var/turf/affected_turf in range(1, get_turf(owner)))
+					var/datum/dimension_theme/theme = new /datum/dimension_theme/meat()
+					theme.apply_theme(affected_turf, show_effect = FALSE)
 
 	return ..()
