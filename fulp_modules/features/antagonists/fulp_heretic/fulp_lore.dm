@@ -26,7 +26,7 @@
 /datum/heretic_knowledge/fulp_grasp
 	name = "Grasp of Bwoink"
 	desc = "Your Mansus Grasp will now bwoink the victim."
-	gain_text = "The Moderators rule the world of Fulp with their dark knowledge and mastery of the soul... \
+	gain_text = "The Moderators rule the Fulpites with their dark knowledge and mastery of the soul... \
 		This is just a little piece of their unimaginable power..."
 	next_knowledge = list(/datum/heretic_knowledge/spell/door_open)
 	cost = 1
@@ -61,8 +61,7 @@
 	name = "Mark of Beef"
 	desc = "Your Mansus Grasp now applies the Mark of Beef. The mark is triggered from an attack with your Beefy Blade. \
 		When triggered, the victim will themselves become a beefman."
-	gain_text = "The Beefman has showed me the secrets to Fulpstation's all-natural top quality beef, \
-		and the ways to conjure it into this plane."
+	gain_text = "Beef of Fulpstation sometimes leaks into our world. And I knew now the pathways it takes."
 	next_knowledge = list(/datum/heretic_knowledge/breakfast_ritual)
 	route = PATH_FOOL
 	mark_type = /datum/status_effect/eldritch/beef
@@ -161,7 +160,7 @@
 	name = "Technique of the Mentors"
 	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
-		even throwing themselves into the gaping expanse of the void... But they did learn this lesson from it..."
+		even throwing themselves into the gaping expanse of the void... But they did learn this valuable lesson from it..."
 	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
 	route = PATH_FOOL
@@ -170,7 +169,7 @@
 /datum/heretic_knowledge/blade_upgrade/fulp
 	name = "Gravy Blade"
 	desc = "Your blades now create slippery tiles when hitting heathens."
-	gain_text = "My enemies shall taste my wrath..."
+	gain_text = "I have found a delicious gravy to go with the beef, and now my enemies shall taste my wrath..."
 	next_knowledge = list(/datum/heretic_knowledge/summon/pony)
 	route = PATH_FOOL
 
@@ -179,12 +178,15 @@
 	if(isopenturf(location))
 		var/turf/open/ol = location
 		ol.MakeSlippery(TURF_WET_LUBE, min_wet_time = 1 SECONDS, wet_time_to_add = 5 SECONDS)
+	to_chat(target, span_notice("You can taste gravy."))
 
 
 /datum/heretic_knowledge/summon/pony
-	name = "Call of the Herd"
-	desc = "Allows you to transmute two right legs and two left legs to create a pony."
-	gain_text = "The Administrators showed me the tools of their craft, and the ways of creation of monsters I would never have imagined before."
+	name = "Power of the Friendship"
+	desc = "Allows you to transmute two right legs and two left legs to create a pony. \
+		Ponies come in many variants with unpredictable spells, but they can always crush heathens."
+	gain_text = "The Administrators showed me the tools of their craft, \
+		and the ways of creation of monsters I would never have imagined before."
 	next_knowledge = list(/datum/heretic_knowledge/ultimate/fulp_final)
 	required_atoms = list(
 		/obj/item/bodypart/leg/right = 2,
@@ -200,7 +202,7 @@
 	name = "The Fulp Moment"
 	desc = "The ascension ritual of the Path of Fool. \
 		Bring 3 beefman corpses to a transmutation rune to complete the ritual. \
-		When completed, HE ARRIVES. You also get a piece of delicious cake."
+		When completed, HE ARRIVES. You also get a cake for your hard work."
 	gain_text = "So many have walked this path before me... So many have strived to reach this power... \
 		Yet they all made a fatal mistake... Performed too many actions in a minute, attracting the attention of the Administrators. \
 		But this time is different... I will not join them! \
