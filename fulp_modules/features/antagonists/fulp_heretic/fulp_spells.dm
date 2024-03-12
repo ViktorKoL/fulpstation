@@ -86,7 +86,13 @@
 	if (isnull(target))
 		return
 
-	return owner.fall_and_crush(target, 25, 10, null, 5 SECONDS, picked_dir)
+	. = owner.fall_and_crush(target, 25, 10, null, 5 SECONDS, picked_dir, rotation = 0)
+
+	if(isliving(owner))
+		var/mob/living/living_owner = owner
+		living_owner.Paralyze(2 SECONDS)
+
+	return
 
 
 /datum/action/cooldown/spell/pointed/ascend_door
