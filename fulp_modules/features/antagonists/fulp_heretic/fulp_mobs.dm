@@ -2,7 +2,7 @@
 	name = "Pony"
 	desc = "The My Little Pony brand describes its characters as ponies. As the name suggests, they usually consist of small colorful \
 			ponies. The characters on the various My Little Pony television shows and movies are depicted with varying degrees of \
-			fantasy elements, like the ability to speak, fly, and use magic."
+			fantasy elements, like the ability to speak, fly, and use magic. This one is actually an eldritch monster."
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/pony.dmi'
 	icon_state = "pony"
 	gender = NEUTER
@@ -47,15 +47,18 @@
 
 	var/list/powers_by_name = list(
 		"applejack" = /datum/action/cooldown/spell/pointed/barnyardcurse/pony,
+		//clowns are known for using knives in battle
 		"clownie" = /datum/action/cooldown/spell/pointed/projectile/furious_steel,
 		"dash" = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/pony,
 		"fleur" = /datum/action/cooldown/spell/aoe/knock/pony,
 		"fluttershy" = /datum/action/cooldown/spell/conjure/bee/pony,
 		"luna" = /datum/action/cooldown/spell/pointed/projectile/moon_parade,
 		"lyra" = /datum/action/cooldown/spell/emp/disable_tech/pony,
+		//he's red so he gets a violent spell
 		"mac" = /datum/action/cooldown/spell/pointed/apetra_vulnera,
+		//out of excuses. Pinkie Pie has fire cascade because.
 		"pinkie" = /datum/action/cooldown/spell/fire_cascade,
-		"rarity" = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/pony,
+		"rarity" = /datum/action/cooldown/spell/aoe/magic_missile/pony,
 		"tia" = /datum/action/cooldown/spell/pointed/void_phase,
 		"trixie" = /datum/action/cooldown/spell/teleport/area_teleport/wizard/pony,
 		"twilight" = /datum/action/cooldown/spell/pointed/projectile/star_blast,

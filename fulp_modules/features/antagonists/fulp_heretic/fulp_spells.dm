@@ -156,7 +156,7 @@
 	school = SCHOOL_FORBIDDEN
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/pony
+/datum/action/cooldown/spell/aoe/magic_missile/pony
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
