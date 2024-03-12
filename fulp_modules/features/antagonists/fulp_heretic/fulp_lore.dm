@@ -163,7 +163,7 @@
 		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even if that way was straight into the all-encompassing void."
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
+	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
 	route = PATH_FOOL
 
