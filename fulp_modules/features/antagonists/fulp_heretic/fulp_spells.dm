@@ -109,3 +109,111 @@
 		return TRUE
 	to_chat(owner, span_warning("You may only cast [src] on a door!"))
 	return FALSE
+
+
+//pony versions of wizard spells
+/datum/action/cooldown/spell/pointed/barnyardcurse/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/conjure/simian/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/projectile/lightningbolt/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/aoe/knock/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/conjure/bee/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/mind_transfer/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/emp/disable_tech/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/conjure_item/infinite_guns/gun/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/shapeshift/wizard/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/rod_form/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/teleport/area_teleport/wizard/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/projectile/spell_cards/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/summon_dancefloor/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/timestop/pony
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+

@@ -46,21 +46,21 @@
 	)
 
 	var/list/powers_by_name = list(
-		"applejack",
-		"clownie",
-		"dash",
-		"fleur",
-		"fluttershy",
-		"luna",
-		"lyra",
-		"mac",
-		"pinkie",
-		"rarity",
-		"tia",
-		"trixie",
-		"twilight",
-		"vinyl",
-		"whooves",
+		"applejack" = /datum/action/cooldown/spell/pointed/barnyardcurse/pony,
+		"clownie" = /datum/action/cooldown/spell/conjure/simian/pony,
+		"dash" = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/pony,
+		"fleur" = /datum/action/cooldown/spell/aoe/knock/pony,
+		"fluttershy" = /datum/action/cooldown/spell/conjure/bee/pony,
+		"luna" = /datum/action/cooldown/spell/pointed/mind_transfer/pony,
+		"lyra" = /datum/action/cooldown/spell/emp/disable_tech/pony,
+		"mac" = /datum/action/cooldown/spell/conjure_item/infinite_guns/gun/pony,
+		"pinkie" = /datum/action/cooldown/spell/shapeshift/wizard/pony,
+		"rarity" = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/pony,
+		"tia" = /datum/action/cooldown/spell/rod_form/pony,
+		"trixie" = /datum/action/cooldown/spell/teleport/area_teleport/wizard/pony,
+		"twilight" = /datum/action/cooldown/spell/pointed/projectile/spell_cards/pony,
+		"vinyl" = /datum/action/cooldown/spell/summon_dancefloor/pony,
+		"whooves" = /datum/action/cooldown/spell/timestop/pony,
 	)
 
 /mob/living/basic/heretic_summon/pony/Initialize(mapload)
