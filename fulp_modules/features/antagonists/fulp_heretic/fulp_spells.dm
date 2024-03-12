@@ -26,7 +26,7 @@
 
 /datum/action/cooldown/spell/pointed/antagroll
 	name = "Rolling of the Antagonist"
-	desc = "Call on the forbidden powers of the Mansus to roll over, crushing anyone in your way. \
+	desc = "Call on the forbidden magicks of the Mansus to roll over, crushing anyone in your way. \
 		Can be used even in cuffs, because funny."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
@@ -41,10 +41,11 @@
 	spell_requirements = NONE
 
 	active_msg = span_notice("We prepare to antagroll.")
-	deactive_msg = span_notice("Not now, They might be watching...")
+	deactive_msg = span_notice("Not now, when They might be watching...")
 
 	var/rolling_speed = 0.25 SECONDS
 
+//this is mostly copied from malf AI's tipping spell, adapted slightly
 /datum/action/cooldown/spell/pointed/antagroll/cast(atom/cast_on)
 	. = ..()
 

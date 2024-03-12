@@ -1,18 +1,19 @@
 /**
- * # The path of fulp.
+ * # The path of tomfoolery.
  *
  * Goes as follows:
  *
- * Things
+ * Tomfoolery
  */
-#define PATH_FOOL "Fool Path"
+#define PATH_FOOL "Tomfoolery Path"
 
 /datum/heretic_knowledge/limited_amount/starting/base_beef
-	name = "The Butcher's Foolishness"
-	desc = "Opens up the Path of the Fool to you. \
+	name = "The Butchered Fool"
+	desc = "Opens up the Path of Tomfoolery to you. \
 		Allows you to transmute a slab of meat and a knife into the beefblade. \
 		You can only create two at a time. \
-		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location."
+		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location. \
+		You can also feed it to heathens to force this effect upon them."
 	gain_text = "I have met a peculiar man today, a man made of beef. He claimed to work his job at fulpstation, and promised to show me around."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
 	required_atoms = list(
@@ -41,7 +42,6 @@
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	//full volume because evil. Maybe too evil? I don't know
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
@@ -60,7 +60,8 @@
 /datum/heretic_knowledge/mark/beef_mark
 	name = "Mark of Beef"
 	desc = "Your Mansus Grasp now applies the Mark of Beef. The mark is triggered from an attack with your Beefy Blade. \
-		When triggered, the victim will themselves become a beefman."
+		When triggered, the victim will themselves become a beefman. \
+		If already a beefman, their surrounding will become meat instead."
 	gain_text = "Beef of Fulpstation sometimes leaks into our world. And I knew now the pathways it takes."
 	next_knowledge = list(/datum/heretic_knowledge/breakfast_ritual)
 	route = PATH_FOOL
@@ -227,7 +228,7 @@
 /datum/heretic_knowledge/ultimate/fulp_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	priority_announce(
-		text = "[generate_heretic_text()] The ultimate fool [user.real_name] has ascended! The Fulp Moment is upon us! [generate_heretic_text()]",
+		text = "[generate_heretic_text()] Fool of fools, [user.real_name], has ascended! The Fulp Moment is upon us! Get some of the cake before it's all devoured! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
 		sound = ANNOUNCER_SPANOMALIES,
 		color_override = "pink",

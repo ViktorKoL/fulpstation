@@ -96,6 +96,7 @@
 		/datum/reagent/eldritch = 15,
 	)
 	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
+	//do note that if you get to eat this you are almost certainly a beefman, and they find this disgusting
 	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
 	slice_type = /obj/item/food/cakeslice/fulp_ascension
 	crafting_complexity = FOOD_COMPLEXITY_5
