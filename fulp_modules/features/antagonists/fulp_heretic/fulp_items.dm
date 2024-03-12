@@ -16,6 +16,9 @@
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade_lefthand.dmi'
 	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/blade_righthand.dmi'
 
+	//to slice the cake you get when ascending
+	tool_behaviour = TOOL_KNIFE
+
 /obj/item/melee/sickly_blade/beef/attack(mob/living/M, mob/living/user)
 	var/lived = !CAN_SUCCUMB(M)
 
