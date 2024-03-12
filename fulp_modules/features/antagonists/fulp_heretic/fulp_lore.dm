@@ -8,16 +8,16 @@
 #define PATH_FOOL "Fool Path"
 
 /datum/heretic_knowledge/limited_amount/starting/base_beef
-	name = "The Foolish Butcher"
+	name = "The Butcher's Foolishness"
 	desc = "Opens up the Path of the Fool to you. \
-		Allows you to transmute any meat and a knife into the beefblade. \
+		Allows you to transmute a slab of meat and a knife into the beefblade. \
 		You can only create two at a time. \
 		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location."
 	gain_text = "I have met a peculiar man today, a man made of beef. He claimed to work his job at fulpstation, and promised to show me around."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
-		/obj/item/food/meat = 1,
+		/obj/item/food/meat/slab = 1,
 	)
 	result_atoms = list(/obj/item/melee/sickly_blade/beef)
 	route = PATH_FOOL
@@ -201,9 +201,11 @@
 	name = "The Fulp Moment"
 	desc = "The ascension ritual of the Path of Fool. \
 		Bring 3 beefman corpses to a transmutation rune to complete the ritual. \
-		When completed, HE ARRIVES"
-	gain_text = "Through the power of beef, the hamster answers to only me! This reality but an illusion, true nature be revealed! \
-		I SUMMON HIM HERE!!!"
+		When completed, HE ARRIVES. You also get a piece of delicious cake."
+	gain_text = "So many have walked this path before me... So many have strived to reach this power... \
+		Yet they all made a fatal mistake... Performed too many actions in a minute, attracting the attention of the Administrators. \
+		But this time is different... I will not join them! \
+		The power is mine and He is on my side, all be revealed in the moment of Fulp!!!"
 	route = PATH_FOOL
 
 	//let's keep Tom saved
@@ -234,6 +236,11 @@
 	tom.set_master(user)
 
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+	//cake
+	new /obj/structure/table/wood(loc)
+	new /obj/item/food/cake/fulp_ascension(loc)
+	new /obj/item/kitchen/fork(loc)
 
 /datum/heretic_knowledge/ultimate/fulp_final/proc/on_death(datum/source)
 	SIGNAL_HANDLER

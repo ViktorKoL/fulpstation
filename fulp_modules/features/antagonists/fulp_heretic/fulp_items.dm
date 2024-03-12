@@ -77,3 +77,33 @@
 	force = 20
 	throw_speed = 0.01
 	throwforce = 100
+
+
+/obj/item/food/cake/fulp_ascension
+	name = "ascension cake"
+	desc = "Congratulations! We knew you can do it!"
+	icon_state = "birthdaycake"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 10,
+		/datum/reagent/consumable/sprinkles = 5,
+		/datum/reagent/consumable/nutriment/vitamin = 5,
+		/datum/reagent/eldritch = 15,
+	)
+	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
+	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	slice_type = /obj/item/food/cakeslice/fulp_ascension
+	crafting_complexity = FOOD_COMPLEXITY_5
+
+/obj/item/food/cakeslice/fulp_ascension
+	name = "ascension cake slice"
+	desc = "Share the taste of godhood with your heretic friends."
+	icon_state = "birthdaycakeslice"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 2,
+		/datum/reagent/consumable/sprinkles = 1,
+		/datum/reagent/consumable/nutriment/vitamin = 1,
+		/datum/reagent/eldritch = 3,
+	)
+	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
+	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	crafting_complexity = FOOD_COMPLEXITY_5
