@@ -26,7 +26,8 @@
 
 /datum/action/cooldown/spell/pointed/antagroll
 	name = "Rolling of the Antagonist"
-	desc = "Call on the forbidden powers of the Mansus to roll over, crushing anyone in your way."
+	desc = "Call on the forbidden powers of the Mansus to roll over, crushing anyone in your way. \
+		Can be used even in cuffs, because funny."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
@@ -118,14 +119,8 @@
 
 
 //pony versions of wizard spells
+
 /datum/action/cooldown/spell/pointed/barnyardcurse/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/conjure/simian/pony
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -153,28 +148,7 @@
 	school = SCHOOL_FORBIDDEN
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/pointed/mind_transfer/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
 /datum/action/cooldown/spell/emp/disable_tech/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/conjure_item/infinite_guns/gun/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/shapeshift/wizard/pony
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -188,21 +162,7 @@
 	school = SCHOOL_FORBIDDEN
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/rod_form/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/pony
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/pointed/projectile/spell_cards/pony
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
