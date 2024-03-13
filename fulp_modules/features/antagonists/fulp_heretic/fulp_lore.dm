@@ -152,7 +152,7 @@
 		/obj/machinery/recharger = 1,
 		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
-	result_atoms = list(/obj/item/melee/charged_batong)
+	result_atoms = list(/obj/item/gun/magic/staff/charged_batong)
 	cost = 1
 	route = PATH_FOOL
 

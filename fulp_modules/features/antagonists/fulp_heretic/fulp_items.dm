@@ -74,14 +74,30 @@
 	. += span_hypnophrase("It's a breakfast cereal. There's barely anything supernatural about it.")
 
 
-/obj/item/melee/charged_batong
+/obj/item/gun/magic/staff/charged_batong
 	name = "batong (CHARGED)"
 	desc = "A twisted appendage resembling a normal security baton, at a glance. Some kind of charge can be felt in the air around its tip."
-	force = 20
-	throw_speed = 0.01
-	throwforce = 100
+	fire_sound = 'sound/magic/staff_change.ogg'
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "batong"
+	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_lefthand.dmi'
+	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_righthand.dmi'
+	inhand_icon_state = "batong"
+	//TODO: find out what file has staff worn icons
+	//worn_icon_state = "batong"
+	school = SCHOOL_FORBIDDEN
+
+	ammo_type = /obj/item/ammo_casing/magic/batong
+
+/obj/item/ammo_casing/magic/batong
+	projectile_type = /obj/projectile/magic/batong
+
+/obj/projectile/magic/batong
+	name = "batong charge"
+	icon_state = "lavastaff"
+	damage = 15
+	damage_type = BURN
+	dismemberment = 50
 
 
 /obj/item/food/cake/fulp_ascension
