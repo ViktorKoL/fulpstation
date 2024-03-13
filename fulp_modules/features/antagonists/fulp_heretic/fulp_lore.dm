@@ -184,14 +184,15 @@
 
 /datum/heretic_knowledge/summon/pony
 	name = "Power of the Friendship"
-	desc = "Allows you to transmute two right legs and two left legs to create a pony. \
+	desc = "Allows you to transmute two slabs of meat, a crayon and a heart to create a pony. \
 		Ponies come in many variants with unpredictable spells, but they can always crush heathens."
 	gain_text = "The Administrators showed me the tools of their craft, \
 		and the ways of creation of monsters I would never have imagined before."
 	next_knowledge = list(/datum/heretic_knowledge/ultimate/fulp_final)
 	required_atoms = list(
-		/obj/item/bodypart/leg/right = 2,
-		/obj/item/bodypart/leg/left = 2,
+		/obj/item/food/meat/slab = 2,
+		/obj/item/toy/crayon = 1,
+		/obj/item/organ/internal/heart = 1,
 	)
 	mob_to_summon = /mob/living/basic/heretic_summon/pony/random
 	cost = 1
