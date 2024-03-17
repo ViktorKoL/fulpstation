@@ -119,6 +119,25 @@
 	return FALSE
 
 
+/datum/action/cooldown/spell/hamster
+	name = "Go to the shadow realm"
+	desc = "Debug haha"
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mind_gate"
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/hamster/cast(mob/living/cast_on)
+	. = ..()
+
+	var/datum/antagonist/heretic/our_heretic = cast_on.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/obj/effect/landmark/heretic/destination_landmark = GLOB.heretic_sacrifice_landmarks[our_heretic.heretic_path] || GLOB.heretic_sacrifice_landmarks[PATH_START]
+	var/turf/destination = get_turf(destination_landmark)
+	do_teleport(cast_on, destination, asoundin = 'sound/magic/repulse.ogg', asoundout = 'sound/magic/blind.ogg', no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = TRUE)
+
 //pony versions of wizard spells
 
 /datum/action/cooldown/spell/pointed/barnyardcurse/pony

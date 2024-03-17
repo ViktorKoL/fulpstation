@@ -23,6 +23,13 @@
 	result_atoms = list(/obj/item/melee/sickly_blade/beef)
 	route = PATH_FOOL
 
+/datum/heretic_knowledge/limited_amount/starting/base_beef/on_research(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
+
+	//this is how wonderland does it I think it should work here too???
+	var/datum/map_template/heretic_sacrifice_room_fool/special_map = new()
+	special_map.load_new_z()
+
 
 /datum/heretic_knowledge/fulp_grasp
 	name = "Grasp of Bwoink"
@@ -132,7 +139,7 @@
 	gain_text = "This world runs and turns only because of a being known as the Hamster. \
 		It runs in the Wheel, empowering the Server as long as its eternal task continues..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
-	spell_to_add = /datum/action/cooldown/spell/charged/beam/fire_blast
+	spell_to_add = /datum/action/cooldown/spell/hamster
 	cost = 1
 	route = PATH_FOOL
 

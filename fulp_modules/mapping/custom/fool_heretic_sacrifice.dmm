@@ -1,0 +1,18 @@
+"a" = (/turf/open/indestructible/plating,/area/centcom/heretic_sacrifice/fool)
+"o" = (/obj/effect/landmark/heretic/fool,/turf/open/indestructible/plating,/area/centcom/heretic_sacrifice/fool)
+"N" = (/turf/closed/indestructible/reinforced,/area/centcom/heretic_sacrifice/fool)
+
+(1,1,1) = {"
+NNNNNNNNNNNN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaoaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NaaaaaaaaaaN
+NNNNNNNNNNNN
+"}
