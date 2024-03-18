@@ -95,9 +95,18 @@
 /obj/projectile/magic/batong
 	name = "batong charge"
 	icon_state = "lavastaff"
-	damage = 15
-	damage_type = BURN
-	dismemberment = 50
+
+/obj/projectile/magic/batong/on_hit(atom/target, blocked = 0, pierce_hit)
+	. = ..()
+
+	if(!iscarbon(target))
+		return FALSE
+
+	var/mob/living/carbon/victim = target
+	var/hypno_phrase = pick(world.file2list("fulp_modules/features/antagonists/fulp_heretic/batong_hypnosis.txt"))
+
+	victim.log_message("has been hypnotised with the objective '[hypno_phrase]' because of a charged batong", LOG_VICTIM, color="orange", log_globally = FALSE)
+	victim.gain_trauma(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hypno_phrase)
 
 
 /obj/item/food/cake/fulp_ascension
