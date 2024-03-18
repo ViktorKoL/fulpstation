@@ -36,7 +36,7 @@
 	desc = "Your Mansus Grasp will now bwoink the victim."
 	gain_text = "The Moderators rule the Fulpites with their dark knowledge and mastery of the soul... \
 		This is just a little piece of their unimaginable power..."
-	next_knowledge = list(/datum/heretic_knowledge/spell/door_open)
+	next_knowledge = list(/datum/heretic_knowledge/vent)
 	cost = 1
 	route = PATH_FOOL
 
@@ -52,16 +52,20 @@
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
-/datum/heretic_knowledge/spell/door_open
-	name = "Doorways'"
-	desc = "Grants you Awakening of the Doors, a spell that can only be cast in the vacuum of space. \
-		It will render you immaterial and invisible for a random time, allowing you to bypass any obstacles."
-	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
-		even if that way was straight into the all-encompassing void."
+/datum/heretic_knowledge/vent
+	name = "Ways of the Shed"
+	desc = "Allows you to alt-click vents to climb into them, if you are completely naked."
+	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
+		Its guardian taught me these forgotten pathways..."
 	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
-	spell_to_add = /datum/action/cooldown/spell/pointed/ascend_door
 	cost = 1
 	route = PATH_FOOL
+
+/datum/heretic_knowledge/vent/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	ADD_TRAIT(user, TRAIT_VENTCRAWLER_NUDE, type)
+
+/datum/heretic_knowledge/vent/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	REMOVE_TRAIT(user, TRAIT_VENTCRAWLER_NUDE, type)
 
 
 /datum/heretic_knowledge/mark/beef_mark
