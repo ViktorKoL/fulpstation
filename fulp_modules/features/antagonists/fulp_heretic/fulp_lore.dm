@@ -147,7 +147,8 @@
 /datum/heretic_knowledge/batong
 	name = "Charging of the Batong"
 	desc = "Allows you to transmute a stunbaton, a toy batong, a recharger and an arm to create a Charged Batong. \
-		I don't know what it does. I can't think of a funny here."
+		This weapon fires placebo charges which convince anyone they hit that they have been mutilated. \
+		Details of this condition vary from heathen to heathen."
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,
