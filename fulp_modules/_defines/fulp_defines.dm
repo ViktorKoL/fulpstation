@@ -58,3 +58,4 @@
 //Fool heretic's airlock spell
 #define TRAIT_UNHINGED "airlock_unhinged"
 #define TRAIT_UNHINGED_SEARCHING "airlock_unhinged_searching"
+#define ACCESS_MANSUS "mansus"

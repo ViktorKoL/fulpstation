@@ -51,20 +51,30 @@
 
 /datum/heretic_knowledge/fulp_grasp/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY, PROC_REF(on_secondary_mansus_grasp))
 
 /datum/heretic_knowledge/fulp_grasp/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
-	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY))
 
 /datum/heretic_knowledge/fulp_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
+/datum/heretic_knowledge/fulp_grasp/proc/on_secondary_mansus_grasp(mob/living/source, atom/target)
+	SIGNAL_HANDLER
+
+	if(istype(target, /obj/machinery/door/airlock) && HAS_TRAIT(target, TRAIT_UNHINGED))
+		var/datum/component/spirit_holding/unhinged_door/comp = target.GetComponent(/datum/component/spirit_holding/unhinged_door)
+		comp.attempt_exorcism(source)
+		return COMPONENT_USE_HAND
+
 
 /datum/heretic_knowledge/spell/door
 	name = "Shed Guardian's Ways"
-	desc = "Grants you Unhinging Glare - a spell that makes doorways sentient. \
-		Do be aware they have their own will and may not be your mindless servants..."
+	desc = "Grants you Unhinging Glare - a spell that makes airlocks sentient. \
+		Do be aware they have their own will and may not be your mindless servants... \
+		You may remove a door's mind by right-clicking it with your mansus grasp."
 	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
 		Its guardian taught me these forgotten pathways..."
 	next_knowledge = list(

@@ -73,7 +73,7 @@
 
 /datum/action/cooldown/spell/pointed/ascend_door
 	name = "Unhinging Glare"
-	desc = "Grants any door sentience, or returns a sentient door to its former self."
+	desc = "Grants any airlock sentience."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -88,52 +88,36 @@
 
 /datum/action/cooldown/spell/pointed/ascend_door/is_valid_target(atom/cast_on)
 	if(HAS_TRAIT(cast_on,TRAIT_UNHINGED_SEARCHING))
-		to_chat(owner,span_warning("The door is still searching for its spirit!"))
+		to_chat(owner,span_warning("The airlock is still searching for its spirit!"))
 		return FALSE
-
-	if(istype(cast_on,/obj/machinery/door))
+	if(HAS_TRAIT(cast_on,TRAIT_UNHINGED))
+		to_chat(owner,span_warning("The airlock already has a spirit! Use your mansus grasp if you wish to banish it!"))
+		return FALSE
+	if(istype(cast_on,/obj/machinery/door/airlock))
 		return TRUE
-	to_chat(owner, span_warning("You may only cast [src] on a door!"))
+	to_chat(owner, span_warning("You may only cast [src] on an airlock!"))
 	return FALSE
 
 /datum/action/cooldown/spell/pointed/ascend_door/cast(atom/cast_on)
 	. = ..()
 
-	//shouldn't happen
-	if(!istype(cast_on,/obj/machinery/door))
-		to_chat(owner, span_warning("You may only cast [src] on a door!"))
-		return FALSE
+	//following section based on spirit holding component's awakening (since we can't use an airlock in hand)
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
+		cast_on.balloon_alert(owner, "spirits are unwilling!")
+		to_chat(owner, span_warning("Anomalous otherworldly energies block you from awakening [cast_on]!"))
+		return
 
-	//check whether we are removing an existing spirit or awakening a new one
-	if(HAS_TRAIT(cast_on,TRAIT_UNHINGED))
-		var/response = tgui_alert(owner, "That door is already unhinged! Do you want to banish its spirit?", "Banish spirit?", list("Yes", "No"))
-		if(response == "Yes")
-			var/datum/component/spirit_holding/unhinged_door/comp = cast_on.GetComponent(/datum/component/spirit_holding/unhinged_door)
-			comp.banish()
-			cast_on.balloon_alert(owner, "spirit banished!")
-	else
-		//following section based on spirit holding component's awakening (since we can't use an airlock in hand)
-
-		if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
-			cast_on.balloon_alert(owner, "spirits are unwilling!")
-			to_chat(owner, span_warning("Anomalous otherworldly energies block you from awakening [cast_on]!"))
-			return
-		cast_on.balloon_alert(owner, "channeling a spirit...")
-		var/datum/component/spirit_holding/unhinged_door/added_component = cast_on.AddComponent(/datum/component/spirit_holding/unhinged_door)
-		ADD_TRAIT(cast_on,TRAIT_UNHINGED_SEARCHING,added_component)
-
-		var/datum/callback/to_call = CALLBACK(src, PROC_REF(affix_spirit), added_component, owner)
-		cast_on.AddComponent(/datum/component/orbit_poll, \
-			ignore_key = POLL_IGNORE_HERETIC_MONSTER, \
-			job_bans = ROLE_PAI, \
-			to_call = to_call, \
-			title = "Spirit of [cast_on] at [get_area_name(get_area(cast_on))]", \
-			timeout = 5 SECONDS, \
-		)
-
-/datum/action/cooldown/spell/pointed/ascend_door/proc/affix_spirit(datum/component/spirit_holding/unhinged_door/comp, mob/awakener, mob/dead/observer/ghost)
-	comp.affix_spirit(awakener, ghost)
-
+	cast_on.balloon_alert(owner, "channeling a spirit...")
+	var/datum/component/spirit_holding/unhinged_door/added_component = cast_on.AddComponent(/datum/component/spirit_holding/unhinged_door)
+	ADD_TRAIT(cast_on,TRAIT_UNHINGED_SEARCHING,added_component)
+	var/datum/callback/to_call = CALLBACK(added_component, TYPE_PROC_REF(/datum/component/spirit_holding/unhinged_door, affix_spirit), owner)
+	cast_on.AddComponent(/datum/component/orbit_poll, \
+		ignore_key = POLL_IGNORE_HERETIC_MONSTER, \
+		job_bans = ROLE_PAI, \
+		to_call = to_call, \
+		title = "Spirit of [cast_on] at [get_area_name(get_area(cast_on))]", \
+		timeout = 5 SECONDS, \
+	)
 
 //debug spell
 /datum/action/cooldown/spell/hamster

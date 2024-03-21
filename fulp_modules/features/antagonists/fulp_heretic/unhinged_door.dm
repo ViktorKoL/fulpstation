@@ -4,8 +4,10 @@
 /datum/component/spirit_holding/unhinged_door/Initialize()
 	. = ..()
 
-	if(!istype(parent,/obj/machinery/door))
+	if(!istype(parent,/obj/machinery/door/airlock))
 		return COMPONENT_INCOMPATIBLE
+
+	attempting_awakening = TRUE
 
 /datum/component/spirit_holding/unhinged_door/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(on_destroy))
@@ -15,27 +17,27 @@
 
 //this is the parent proc copied because I could not figure out how to do the changes while inheriting...
 /datum/component/spirit_holding/unhinged_door/affix_spirit(mob/awakener, mob/dead/observer/ghost)
-	var/atom/thing = parent
+	var/obj/machinery/door/airlock/thing = parent
 
 	if(isnull(ghost))
 		thing.balloon_alert(awakener, "silence...")
 		banish()
 		return
 
-	if(QDELETED(parent)) //if the thing that we're conjuring a spirit in has been destroyed, don't create a spirit
+	if(QDELETED(thing)) //if the thing that we're conjuring a spirit in has been destroyed, don't create a spirit
 		to_chat(ghost, span_userdanger("The new vessel for your spirit has been destroyed! You remain an unbound ghost."))
 		banish()
 		return
 
-	bound_spirit = new(parent)
+	bound_spirit = new(thing)
 	bound_spirit.ckey = ghost.ckey
-	bound_spirit.fully_replace_character_name(null, "The spirit of [parent]")
+	bound_spirit.fully_replace_character_name(null, "The spirit of [thing]")
 	bound_spirit.status_flags |= GODMODE
 	bound_spirit.copy_languages(awakener, LANGUAGE_MASTER)
 	bound_spirit.get_language_holder().omnitongue = TRUE
 
-	RegisterSignal(parent, COMSIG_ATOM_RELAYMOVE, PROC_REF(block_buckle_message))
-	RegisterSignal(parent, COMSIG_BIBLE_SMACKED, PROC_REF(on_bible_smacked))
+	RegisterSignal(thing, COMSIG_ATOM_RELAYMOVE, PROC_REF(block_buckle_message))
+	RegisterSignal(thing, COMSIG_BIBLE_SMACKED, PROC_REF(on_bible_smacked))
 
 	attempting_awakening = FALSE
 	REMOVE_TRAIT(parent,TRAIT_UNHINGED_SEARCHING,src)
@@ -46,6 +48,13 @@
 	created_spell.Grant(bound_spirit)
 	created_spell.linked_comp = src
 
+	//make the airlock unusable by any other means
+	thing.aiControlDisabled = AI_WIRE_DISABLED
+	thing.hackProof = TRUE
+	thing.opens_with_door_remote = FALSE
+	thing.req_access = list(ACCESS_MANSUS)
+	//might want to restore these properties after banishing...
+
 /datum/component/spirit_holding/unhinged_door/proc/banish()
 	if(attempting_awakening)
 		REMOVE_TRAIT(parent,TRAIT_UNHINGED_SEARCHING,src)
@@ -55,6 +64,8 @@
 
 /datum/component/spirit_holding/unhinged_door/attempt_exorcism(mob/exorcist)
 	. = ..()
+	if(!.)
+		return
 	banish()
 
 /datum/component/spirit_holding/unhinged_door/on_destroy(datum/source)
