@@ -19,13 +19,12 @@
 
 	if(isnull(ghost))
 		thing.balloon_alert(awakener, "silence...")
-		attempting_awakening = FALSE
-		unsuccessful()
+		banish()
 		return
 
 	if(QDELETED(parent)) //if the thing that we're conjuring a spirit in has been destroyed, don't create a spirit
 		to_chat(ghost, span_userdanger("The new vessel for your spirit has been destroyed! You remain an unbound ghost."))
-		unsuccessful()
+		banish()
 		return
 
 	bound_spirit = new(parent)
@@ -43,10 +42,40 @@
 	ADD_TRAIT(parent,TRAIT_UNHINGED,src)
 
 	bound_spirit.mind.add_antag_datum(/datum/antagonist/unhinged_door)
+	var/datum/action/unhinge_slumber/created_spell = new /datum/action/unhinge_slumber(bound_spirit)
+	created_spell.Grant(bound_spirit)
+	created_spell.linked_comp = src
 
-/datum/component/spirit_holding/unhinged_door/proc/unsuccessful()
-	REMOVE_TRAIT(parent,TRAIT_UNHINGED_SEARCHING,src)
+/datum/component/spirit_holding/unhinged_door/proc/banish()
+	if(attempting_awakening)
+		REMOVE_TRAIT(parent,TRAIT_UNHINGED_SEARCHING,src)
+	else
+		REMOVE_TRAIT(parent,TRAIT_UNHINGED,src)
 	qdel(src)
+
+/datum/component/spirit_holding/unhinged_door/attempt_exorcism(mob/exorcist)
+	. = ..()
+	banish()
+
+/datum/component/spirit_holding/unhinged_door/on_destroy(datum/source)
+	. = ..()
+	banish()
+
+
+/datum/action/unhinge_slumber
+	name = "Return to the Shed"
+	desc = "Every door must one day close. Abandon this body and leave it once again as it was."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/simple/mob.dmi'
+	button_icon_state = "ghost"
+
+	var/datum/component/spirit_holding/unhinged_door/linked_comp
+
+/datum/action/unhinge_slumber/Trigger(trigger_flags)
+	var/response = tgui_alert(owner, "Are you sure? You will be a formless ghost once again, and not able to return!", "Abandon form?", list("Yes", "No"))
+	if(response == "Yes")
+		linked_comp.banish()
 
 
 // mostly copied from heretic_monster:
