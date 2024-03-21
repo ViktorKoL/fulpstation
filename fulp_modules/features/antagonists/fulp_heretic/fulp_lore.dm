@@ -5,10 +5,10 @@
  *
  * beef blade
  * bwoink grasp
- * shrimp chameleon
+ * make doors sentient
  * beef mark
  * breakfast ritual
- * venting
+ * antagroll
  * placebo batong
  * slippery blade
  * pony summon
@@ -45,7 +45,7 @@
 	desc = "Your Mansus Grasp will now bwoink the victim."
 	gain_text = "The Moderators rule the Fulpites with their dark knowledge and mastery of the soul... \
 		This is just a little piece of their unimaginable power..."
-	next_knowledge = list(/datum/heretic_knowledge/spell/chameleon)
+	next_knowledge = list(/datum/heretic_knowledge/spell/door)
 	cost = 1
 	route = PATH_FOOL
 
@@ -61,16 +61,18 @@
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
-/datum/heretic_knowledge/spell/chameleon
-	name = "Shrimphony of the Evaders"
-	desc = "Grants you Krillusion Veil - a spell that will disguise you as a shrimp plushie. \
-		If anyone tries to touch you or step on you, they will be hit by your mansus grasp and the disguise will be dropped."
-	gain_text = "So many souls have walked this path before... Lured in by a promise of power... Their journeys did not end well. \
-		They made mistakes... Went too far... Performed too many actions in a minute. \
-		This attracted the Administration's attention, and they were punished terribly. \
-		But this time will be different... I know how to evade their wrath by the means of a shrimphernal avatar..."
-	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
-	spell_to_add = /datum/action/cooldown/spell/chameleon
+/datum/heretic_knowledge/spell/door
+	name = "Shed Guardian's Ways"
+	desc = "Grants you Unhinging Glare - a spell that makes doorways sentient. \
+		Do be aware they have their own will and may not be your mindless servants..."
+	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
+		Its guardian taught me these forgotten pathways..."
+	next_knowledge = list(
+		/datum/heretic_knowledge/mark/beef_mark,
+		/datum/heretic_knowledge/void_cloak,
+		/datum/heretic_knowledge/spell/mind_gate,
+	)
+	spell_to_add = /datum/action/cooldown/spell/pointed/ascend_door
 	cost = 1
 	route = PATH_FOOL
 
@@ -96,7 +98,7 @@
 	priority = MAX_KNOWLEDGE_PRIORITY - 10
 	var/was_completed = FALSE
 
-	next_knowledge = list(/datum/heretic_knowledge/spell/door)
+	next_knowledge = list(/datum/heretic_knowledge/spell/antagroll)
 	route = PATH_FOOL
 
 	required_atoms = list(
@@ -143,15 +145,29 @@
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return
 
-
-/datum/heretic_knowledge/spell/door
-	name = "Shed Guardian's Ways"
-	desc = "Grants you Unhinging Glare - a spell that makes doorways sentient. \
-		Do be aware they have their own will and may not be your mindless servants..."
-	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
-		Its guardian taught me these forgotten pathways..."
+/*
+/datum/heretic_knowledge/spell/chameleon
+	name = "Shrimphony of the Evaders"
+	desc = "Grants you Krillusion Veil - a spell that will disguise you as a shrimp plushie. \
+		If anyone tries to touch you or step on you, they will be hit by your mansus grasp and the disguise will be dropped."
+	gain_text = "So many souls have walked this path before... Lured in by a promise of power... Their journeys did not end well. \
+		They made mistakes... Went too far... Performed too many actions in a minute. \
+		This attracted the Administration's attention, and they were punished terribly. \
+		But this time will be different... I know how to evade their wrath by the means of a shrimphernal avatar..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
-	spell_to_add = /datum/action/cooldown/spell/pointed/ascend_door
+	spell_to_add = /datum/action/cooldown/spell/chameleon
+	cost = 1
+	route = PATH_FOOL
+*/
+
+
+/datum/heretic_knowledge/spell/antagroll
+	name = "Method of the Mentors"
+	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
+	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
+		even throwing themselves into the gaping expanse of the void... But they did learn this valuable lesson from it..."
+	next_knowledge = list(/datum/heretic_knowledge/batong)
+	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
 	route = PATH_FOOL
 
@@ -164,7 +180,9 @@
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,
-		/datum/heretic_knowledge/spell/antagroll,
+		/datum/heretic_knowledge/reroll_targets,
+		/datum/heretic_knowledge/curse/corrosion,
+		/datum/heretic_knowledge/spell/opening_blast,
 	)
 	required_atoms = list(
 		/obj/item/melee/baton/security = 1,
@@ -173,16 +191,6 @@
 		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
 	result_atoms = list(/obj/item/gun/magic/staff/charged_batong)
-	cost = 1
-	route = PATH_FOOL
-
-
-/datum/heretic_knowledge/spell/antagroll
-	name = "Method of the Mentors"
-	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
-	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
-		even throwing themselves into the gaping expanse of the void... But they did learn this valuable lesson from it..."
-	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
 	route = PATH_FOOL
 
@@ -207,7 +215,8 @@
 	desc = "Allows you to transmute two slabs of meat, a crayon and a heart to create a pony. \
 		Ponies come in many variants with unpredictable spells, but they can always crush heathens."
 	gain_text = "The Administrators showed me the tools of their craft, \
-		and the ways of creation of monsters I would never have imagined before."
+		and the ways of creation of monsters I would never have imagined before. \
+		They wield an ancient and terrible magic that now is mine to command..."
 	next_knowledge = list(/datum/heretic_knowledge/ultimate/fulp_final)
 	required_atoms = list(
 		/obj/item/food/meat/slab = 2,
