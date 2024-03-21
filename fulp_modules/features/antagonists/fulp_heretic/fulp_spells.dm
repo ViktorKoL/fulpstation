@@ -97,9 +97,100 @@
 	return
 
 
+//code partially copied from chameleon projector and adapted
+/datum/action/cooldown/spell/chameleon
+	name = "Krillusion Veil"
+	desc = "Masks you as a shrimp plushie that will mansus grasp anyone who dares touch you."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'fulp_modules/features/toys/icons/toys.dmi'
+	button_icon_state = "shrimp"
+	cooldown_time = 30 SECONDS
+
+	school = SCHOOL_FORBIDDEN
+	spell_requirements = NONE
+
+	var/obj/effect/dummy/shrimp/dummy = FALSE
+
+/datum/action/cooldown/spell/chameleon/can_cast_spell(feedback = TRUE)
+	. = ..()
+
+	if(!.)
+		return FALSE
+
+	if(isturf(owner.loc) || istype(owner.loc, /obj/structure) || dummy)
+		return TRUE
+	if(feedback)
+		to_chat(owner, span_warning("You can't shrimp while inside something!"))
+	return FALSE
+
+/datum/action/cooldown/spell/chameleon/cast(mob/living/user)
+	to_chat(world,"starting parent cast")
+	. = ..()
+	to_chat(world,"finished parent cast as [.]")
+
+	to_chat(world,"toggling, dummy is [dummy]")
+	if(dummy)
+		to_chat(world,"removing dummy...")
+		eject()
+		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, TRUE, -6)
+		qdel(dummy)
+		dummy = null
+		to_chat(user, span_notice("We are once again unkrilled."))
+	else
+		to_chat(world,"creating dummy...")
+		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, TRUE, -6)
+		dummy = new/obj/effect/dummy/shrimp(user.drop_location())
+		dummy.activate(user)
+		to_chat(user, span_notice("We shrimp ourselves."))
+	user.cancel_camera()
+
+/datum/action/cooldown/spell/chameleon/proc/eject()
+	owner.forceMove(dummy.loc)
+	owner.reset_perspective(null)
+
+/obj/effect/dummy/shrimp
+	name = ""
+	desc = ""
+	density = FALSE
+	var/can_move = 0
+	var/obj/item/chameleon/master = null
+
+/obj/effect/dummy/shrimp/proc/activate(mob/M)
+	var/obj/item/toy/plush/shrimp/shrimp = /obj/item/toy/plush/shrimp
+	appearance = shrimp.appearance
+
+	if(istype(M.buckled, /obj/vehicle))
+		var/obj/vehicle/V = M.buckled
+		V.unbuckle_mob(M, force = TRUE)
+	M.forceMove(src)
+
+/*
+/obj/effect/dummy/chameleon/attackby()
+	master.disrupt()
+
+/obj/effect/dummy/shrimp/attack_hand(mob/user, list/modifiers)
+	master.disrupt()
+
+/obj/effect/dummy/shrimp/attack_animal(mob/user, list/modifiers)
+	master.disrupt()
+
+/obj/effect/dummy/shrimp/attack_alien(mob/user, list/modifiers)
+	master.disrupt()
+
+/obj/effect/dummy/shrimp/ex_act(S, T)
+	master.disrupt()
+	return TRUE
+
+/obj/effect/dummy/shrimp/bullet_act()
+	. = ..()
+	master.disrupt()
+*/
+
+
 /datum/action/cooldown/spell/pointed/ascend_door
-	name = "Awakening of Doors"
-	desc = "A door is a hinged or otherwise movable barrier that allows ingress (entry) into and egress (exit) from an enclosure. The created opening in the wall is a doorway or portal. A door's essential and primary purpose is to provide security by controlling access to the doorway (portal). Conventionally, it is a panel that fits into the doorway of a building, room, or vehicle. Doors are generally made of a material suited to the door's task. They are commonly attached by hinges, but can move by other means, such as slides or counterbalancing."
+	name = "Unhinging Glare"
+	desc = "Grants any door sentience."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -108,7 +199,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 5 SECONDS
 
-	invocation = "A'I OP'N"
+	invocation = "H'I H'LLO H'I H'LLO"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -118,7 +209,19 @@
 	to_chat(owner, span_warning("You may only cast [src] on a door!"))
 	return FALSE
 
+/datum/action/cooldown/spell/pointed/ascend_door/cast(atom/cast_on)
+	. = ..()
 
+	//shouldn't happen
+	if(!istype(cast_on,/obj/machinery/door))
+		to_chat(owner, span_warning("You may only cast [src] on a door!"))
+		return FALSE
+
+	cast_on.AddComponent(/datum/component/unhinged_door)
+
+
+
+//debug spell
 /datum/action/cooldown/spell/hamster
 	name = "Go to the shadow realm"
 	desc = "Debug haha"
@@ -137,6 +240,7 @@
 	var/obj/effect/landmark/heretic/destination_landmark = GLOB.heretic_sacrifice_landmarks[our_heretic.heretic_path] || GLOB.heretic_sacrifice_landmarks[PATH_START]
 	var/turf/destination = get_turf(destination_landmark)
 	do_teleport(cast_on, destination, asoundin = 'sound/magic/repulse.ogg', asoundout = 'sound/magic/blind.ogg', no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = TRUE)
+
 
 //pony versions of wizard spells
 

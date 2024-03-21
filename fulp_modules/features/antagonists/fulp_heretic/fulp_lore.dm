@@ -3,7 +3,16 @@
  *
  * Goes as follows:
  *
- * Tomfoolery
+ * beef blade
+ * bwoink grasp
+ * shrimp chameleon
+ * beef mark
+ * breakfast ritual
+ * venting
+ * placebo batong
+ * slippery blade
+ * pony summon
+ * TOM FULP
  */
 #define PATH_FOOL "Tomfoolery Path"
 
@@ -36,7 +45,7 @@
 	desc = "Your Mansus Grasp will now bwoink the victim."
 	gain_text = "The Moderators rule the Fulpites with their dark knowledge and mastery of the soul... \
 		This is just a little piece of their unimaginable power..."
-	next_knowledge = list(/datum/heretic_knowledge/vent)
+	next_knowledge = list(/datum/heretic_knowledge/spell/chameleon)
 	cost = 1
 	route = PATH_FOOL
 
@@ -52,20 +61,18 @@
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
 
-/datum/heretic_knowledge/vent
-	name = "Ways of the Shed"
-	desc = "Allows you to alt-click vents to climb into them, if you are completely naked."
-	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
-		Its guardian taught me these forgotten pathways..."
+/datum/heretic_knowledge/spell/chameleon
+	name = "Shrimphony of the Evaders"
+	desc = "Grants you Krillusion Veil - a spell that will disguise you as a shrimp plushie. \
+		If anyone tries to touch you or step on you, they will be hit by your mansus grasp and the disguise will be dropped."
+	gain_text = "So many souls have walked this path before... Lured in by a promise of power... Their journeys did not end well. \
+		They made mistakes... Went too far... Performed too many actions in a minute. \
+		This attracted the Administration's attention, and they were punished terribly. \
+		But this time will be different... I know how to evade their wrath by the means of a shrimphernal avatar..."
 	next_knowledge = list(/datum/heretic_knowledge/mark/beef_mark)
+	spell_to_add = /datum/action/cooldown/spell/chameleon
 	cost = 1
 	route = PATH_FOOL
-
-/datum/heretic_knowledge/vent/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
-	ADD_TRAIT(user, TRAIT_VENTCRAWLER_NUDE, type)
-
-/datum/heretic_knowledge/vent/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
-	REMOVE_TRAIT(user, TRAIT_VENTCRAWLER_NUDE, type)
 
 
 /datum/heretic_knowledge/mark/beef_mark
@@ -89,7 +96,7 @@
 	priority = MAX_KNOWLEDGE_PRIORITY - 10
 	var/was_completed = FALSE
 
-	next_knowledge = list(/datum/heretic_knowledge/spell/hamster)
+	next_knowledge = list(/datum/heretic_knowledge/spell/door)
 	route = PATH_FOOL
 
 	required_atoms = list(
@@ -136,14 +143,15 @@
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return
 
-/datum/heretic_knowledge/spell/hamster
-	name = "Domain of the Hamster"
-	desc = "Grants you Hamster's Retreat - a spell that can open a portal to a pocket dimension, that anyone can travel through. \
-		You can only close this portal from outside, and even then, heathens may exit the dimension, appearing at a random location."
-	gain_text = "This world runs and turns only because of a being known as the Hamster. \
-		It runs in the Wheel, empowering the Server as long as its eternal task continues..."
+
+/datum/heretic_knowledge/spell/door
+	name = "Shed Guardian's Ways"
+	desc = "Grants you Unhinging Glare - a spell that makes doorways sentient. \
+		Do be aware they have their own will and may not be your mindless servants..."
+	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
+		Its guardian taught me these forgotten pathways..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
-	spell_to_add = /datum/action/cooldown/spell/hamster
+	spell_to_add = /datum/action/cooldown/spell/pointed/ascend_door
 	cost = 1
 	route = PATH_FOOL
 
@@ -170,7 +178,7 @@
 
 
 /datum/heretic_knowledge/spell/antagroll
-	name = "Technique of the Mentors"
+	name = "Method of the Mentors"
 	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even throwing themselves into the gaping expanse of the void... But they did learn this valuable lesson from it..."
