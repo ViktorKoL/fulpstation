@@ -42,7 +42,7 @@
 	send_to_playing_players(span_narsie("TOM FULP HAS RISEN"))
 	sound_to_playing_players("fulp_modules/features/antagonists/fulp_heretic/sounds/tom_fulp_arrival.ogg")
 
-	theme = new /datum/dimension_theme/meat()
+	theme = new /datum/dimension_theme/meat/fool_heretic()
 
 /obj/tom_fulp/proc/set_master(mob/master)
 	var/datum/component/singularity/singularity_component = singularity.resolve()

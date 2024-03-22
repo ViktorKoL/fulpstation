@@ -13,7 +13,7 @@
 			else
 				//make meat tiles around
 				for(var/turf/affected_turf in range(1, get_turf(owner)))
-					var/datum/dimension_theme/theme = new /datum/dimension_theme/meat()
+					var/datum/dimension_theme/theme = new /datum/dimension_theme/meat/fool_heretic()
 					theme.apply_theme(affected_turf, show_effect = FALSE)
 
 	return ..()
