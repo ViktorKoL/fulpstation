@@ -5,7 +5,7 @@
  *
  * beef blade
  * bwoink grasp
- * make doors sentient
+ * unhinging glare
  * beef mark
  * breakfast ritual
  * antagroll
@@ -14,16 +14,18 @@
  * pony summon
  * TOM FULP
  */
-#define PATH_FOOL "Tomfoolery Path"
+#define PATH_FOOL "Fool Path"
 
 /datum/heretic_knowledge/limited_amount/starting/base_beef
-	name = "The Butchered Fool"
-	desc = "Opens up the Path of Tomfoolery to you. \
+	name = "Day of the Fool"
+	desc = "Opens up the Path of the Fool to you. \
 		Allows you to transmute a slab of meat and a knife into the beefblade. \
 		You can only create two at a time. \
-		You can not break it like you would a normal sickly blade, but anyone can take a bite out of it to teleport to a random location. \
-		You can also feed it to heathens to force this effect upon them."
-	gain_text = "I have met a peculiar man today, a man made of beef. He claimed to work his job at fulpstation, and promised to show me around."
+		You can not break it like you would a normal sickly blade, but you can take a bite out of it to teleport to a random location. \
+		You can also feed it to heathens to force this effect upon them. \
+		Finally, it works as a kitchen knife, slicing food."
+	gain_text = "I have met a peculiar man today, a man made of beef. \
+		He claimed to work his job at fulpstation, and promised to show me around, one glorious day."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -41,10 +43,10 @@
 
 
 /datum/heretic_knowledge/fulp_grasp
-	name = "Grasp of Bwoink"
+	name = "Bwoinking Grasp"
 	desc = "Your Mansus Grasp will now bwoink the victim."
-	gain_text = "The Moderators rule the Fulpites with their dark knowledge and mastery of the soul... \
-		This is just a little piece of their unimaginable power..."
+	gain_text = "The Moderators rule the Fulpites with their knowledge of the Variables and mastery of the Ban... \
+		This is just a little piece of their vast power, a mansus-tone which makes mortals tremble."
 	next_knowledge = list(/datum/heretic_knowledge/spell/door)
 	cost = 1
 	route = PATH_FOOL
@@ -76,7 +78,7 @@
 		Do be aware they have their own will and may not be your mindless servants... \
 		You may remove a door's mind by right-clicking it with your mansus grasp."
 	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
-		Its guardian taught me these forgotten pathways..."
+		Its guardian taught me how to unhinge any obstacle in my way..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/mark/beef_mark,
 		/datum/heretic_knowledge/void_cloak,
@@ -91,8 +93,10 @@
 	name = "Mark of Beef"
 	desc = "Your Mansus Grasp now applies the Mark of Beef. The mark is triggered from an attack with your Beefy Blade. \
 		When triggered, the victim will themselves become a beefman. \
-		If already a beefman, their surrounding will become meat instead."
-	gain_text = "Beef of Fulpstation sometimes leaks into our world. And I knew now the pathways it takes."
+		If already a beefman, their surroundings will become meat instead."
+	gain_text = "The Beefmen of Fulpstation see things other mortals do not and know every secret. \
+		That is the torture I will inflict upon those who oppose me. \
+		The beef is only more ravenous with each sacrifice..."
 	next_knowledge = list(/datum/heretic_knowledge/breakfast_ritual)
 	route = PATH_FOOL
 	mark_type = /datum/status_effect/eldritch/beef
@@ -175,7 +179,8 @@
 	name = "Method of the Mentors"
 	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
-		even throwing themselves into the gaping expanse of the void... But they did learn this valuable lesson from it..."
+		even throwing themselves into the gaping expanse of the void... \
+		But those few who returned did learn this valuable lesson..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
 	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
@@ -221,7 +226,7 @@
 
 
 /datum/heretic_knowledge/summon/pony
-	name = "Power of the Friendship"
+	name = "Magic of the Friendship"
 	desc = "Allows you to transmute two slabs of meat, a crayon and a heart to create a pony. \
 		Ponies come in many variants with unpredictable spells, but they can always crush heathens."
 	gain_text = "The Administrators showed me the tools of their craft, \

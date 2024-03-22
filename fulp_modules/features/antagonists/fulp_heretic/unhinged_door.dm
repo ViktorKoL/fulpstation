@@ -1,8 +1,4 @@
 /datum/component/spirit_holding/unhinged_door
-	var/list/abilities = list(
-		/datum/action/unhinged_door/ghost,
-		/datum/action/unhinged_door/open_close,
-	)
 
 /datum/component/spirit_holding/unhinged_door/Initialize()
 	. = ..()

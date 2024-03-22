@@ -1,7 +1,7 @@
 /obj/tom_fulp
 	name = "Tom Fulp"
 	gender = MALE
-	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
+	desc = "Your mind begins to fulp as it tries to comprehend what it sees."
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/tom_fulp.dmi'
 	icon_state = "tom_fulp"
 	anchored = TRUE
