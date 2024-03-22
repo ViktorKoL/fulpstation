@@ -1,5 +1,8 @@
 /datum/component/spirit_holding/unhinged_door
-	//aaaaa
+	var/list/abilities = list(
+		/datum/action/unhinged_door/ghost,
+		/datum/action/unhinged_door/open_close,
+	)
 
 /datum/component/spirit_holding/unhinged_door/Initialize()
 	. = ..()
@@ -44,11 +47,13 @@
 	ADD_TRAIT(parent,TRAIT_UNHINGED,src)
 
 	bound_spirit.mind.add_antag_datum(/datum/antagonist/unhinged_door)
-	var/datum/action/unhinge_slumber/created_spell = new /datum/action/unhinge_slumber(bound_spirit)
-	created_spell.Grant(bound_spirit)
-	created_spell.linked_comp = src
 
-	//make the airlock unusable by any other means
+	for(var/datum/action/unhinged_door/ability_path as anything in subtypesof(/datum/action/unhinged_door))
+		var/datum/action/unhinged_door/action_to_grant = new ability_path(bound_spirit)
+		action_to_grant.Grant(bound_spirit)
+		action_to_grant.linked_comp = src
+
+	//make the airlock unusable by any other means (TODO: make the wires unhackable probably)
 	thing.aiControlDisabled = AI_WIRE_DISABLED
 	thing.hackProof = TRUE
 	thing.opens_with_door_remote = FALSE
@@ -73,20 +78,40 @@
 	banish()
 
 
-/datum/action/unhinge_slumber
-	name = "Return to the Shed"
-	desc = "Every door must one day close. Abandon this body and leave it once again as it was."
+/datum/action/unhinged_door
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'icons/mob/simple/mob.dmi'
-	button_icon_state = "ghost"
 
 	var/datum/component/spirit_holding/unhinged_door/linked_comp
 
-/datum/action/unhinge_slumber/Trigger(trigger_flags)
+/datum/action/unhinged_door/ghost
+	name = "Return to the Shed"
+	desc = "Every door must one day close. Abandon this body and leave it once again as it was."
+	button_icon = 'icons/mob/simple/mob.dmi'
+	button_icon_state = "ghost"
+
+/datum/action/unhinged_door/ghost/Trigger(trigger_flags)
 	var/response = tgui_alert(owner, "Are you sure? You will be a formless ghost once again, and not able to return!", "Abandon form?", list("Yes", "No"))
 	if(response == "Yes")
 		linked_comp.banish()
+
+/datum/action/unhinged_door/open_close
+	name = "Toggle Door"
+	desc = "Open and close (violently)."
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mind_gate"
+
+/datum/action/unhinged_door/open_close/Trigger(trigger_flags)
+	var/obj/machinery/door/airlock/form = linked_comp.parent
+	if(form.welded)
+		to_chat(owner, span_warning("You have been welded shut!"))
+	else
+		if(form.density)
+			form.secure_open()
+		else
+			form.locked = FALSE
+			form.close(forced = TRUE, force_crush = TRUE)
+			form.update_appearance()
 
 
 // mostly copied from heretic_monster:
@@ -113,6 +138,5 @@
 	objectives += door_obj
 	owner.announce_objectives()
 	to_chat(owner, span_boldnotice("You are an airlock given a mind through the gates of the Shed."))
-	to_chat(owner, span_notice("You do not have to assist the one who brought you here, but know they can banish you at will."))
 
 	. = ..()
