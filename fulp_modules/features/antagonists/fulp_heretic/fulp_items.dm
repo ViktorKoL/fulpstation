@@ -40,10 +40,10 @@
 	if(do_teleport(eater, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
 		if(eater == feeder)
 			to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. [after_use_message]"))
-			feeder.say("This server is out to get me")
+			say("This server is out to get me")
 		else
 			to_chat(eater, span_warning("As you take a bite of [src], you feel a gust of energy flow through your body. Unknown forces grasp you and you wind up somewhere completely different..."))
-			feeder.say("GEY AWAY FROM ME YOU GREIFING PRICK!!!!!")
+			say("GEY AWAY FROM ME YOU GREIFING PRICK!!!!!")
 	else
 		to_chat(eater, span_warning("You take a bite of [src], but your plea goes unanswered."))
 
@@ -122,7 +122,7 @@
 		/datum/reagent/eldritch = 15,
 	)
 	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
-	//do note that if you get to eat this you are almost certainly a beefman, and they find this disgusting
+	//do note that if you get to eat this you are almost certainly a beefman, and they find this disgusting. I will not fix it.
 	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
 	slice_type = /obj/item/food/cakeslice/fulp_ascension
 	crafting_complexity = FOOD_COMPLEXITY_5
