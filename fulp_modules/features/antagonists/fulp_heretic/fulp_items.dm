@@ -24,6 +24,7 @@
 
 	. = ..()
 
+	//our attack made them horizontal
 	if(lived && CAN_SUCCUMB(M))
 		say("I am a quick learner when it comes to throwing and strangling people I see.")
 
