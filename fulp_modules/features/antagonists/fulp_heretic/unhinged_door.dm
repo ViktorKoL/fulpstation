@@ -53,7 +53,10 @@
 	thing.aiControlDisabled = AI_WIRE_DISABLED
 	thing.hackProof = TRUE
 	thing.opens_with_door_remote = FALSE
-	thing.req_access = list(ACCESS_MANSUS)
+	if(islist(thing.req_access))
+		thing.req_access += ACCESS_MANSUS
+	else
+		thing.req_access = list(ACCESS_MANSUS)
 	//might want to restore these properties after banishing...
 
 /datum/component/spirit_holding/unhinged_door/proc/banish()
@@ -61,6 +64,15 @@
 		REMOVE_TRAIT(parent,TRAIT_UNHINGED_SEARCHING,src)
 	else
 		REMOVE_TRAIT(parent,TRAIT_UNHINGED,src)
+
+	//restore airlock functionality
+	var/obj/machinery/door/airlock/thing = parent
+	thing.aiControlDisabled = AI_WIRE_NORMAL
+	thing.hackProof = FALSE
+	thing.opens_with_door_remote = TRUE
+	thing.req_access -= ACCESS_MANSUS
+
+
 	qdel(src)
 
 /datum/component/spirit_holding/unhinged_door/attempt_exorcism(mob/exorcist)
