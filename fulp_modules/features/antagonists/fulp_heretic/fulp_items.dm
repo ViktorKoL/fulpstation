@@ -91,6 +91,13 @@
 
 	ammo_type = /obj/item/ammo_casing/magic/batong
 
+/obj/item/gun/magic/staff/charged_batong/is_wizard_or_friend(mob/user)
+	return IS_HERETIC_OR_MONSTER(user)
+
+/obj/item/gun/magic/staff/charged_batong/on_intruder_use(mob/living/user, atom/target)
+	to_chat(user, span_hypnophrase("The [src] is not yours to command!"))
+	process_fire(user,user)
+
 /obj/item/ammo_casing/magic/batong
 	projectile_type = /obj/projectile/magic/batong
 
