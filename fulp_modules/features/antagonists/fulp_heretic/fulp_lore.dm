@@ -63,20 +63,11 @@
 
 	playsound(target, 'sound/effects/adminhelp.ogg', 100)
 
-/datum/heretic_knowledge/fulp_grasp/proc/on_secondary_mansus_grasp(mob/living/source, atom/target)
-	SIGNAL_HANDLER
-
-	if(istype(target, /obj/machinery/door/airlock) && HAS_TRAIT(target, TRAIT_UNHINGED))
-		var/datum/component/spirit_holding/unhinged_door/comp = target.GetComponent(/datum/component/spirit_holding/unhinged_door)
-		comp.attempt_exorcism(source)
-		return COMPONENT_USE_HAND
-
 
 /datum/heretic_knowledge/spell/door
 	name = "Shed Guardian's Ways"
 	desc = "Grants you Unhinging Glare - a spell that makes airlocks sentient. \
-		Do be aware they have their own will and may not be your mindless servants... \
-		You may remove a door's mind by right-clicking it with your mansus grasp."
+		Do be aware they have their own will and may not be your mindless servants..."
 	gain_text = "Beneath the skin of Fulpstation lay a dark place known as the Shed. \
 		Its guardian taught me how to unhinge any obstacle in my way..."
 	next_knowledge = list(
