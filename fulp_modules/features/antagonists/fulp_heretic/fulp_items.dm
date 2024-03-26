@@ -78,7 +78,7 @@
 /obj/item/gun/magic/staff/charged_batong
 	name = "batong (CHARGED)"
 	desc = "A twisted appendage resembling a normal security baton, at a glance. Some kind of charge can be felt in the air around its tip."
-	fire_sound = 'sound/magic/staff_change.ogg'
+	fire_sound = 'sound/voice/beepsky/freeze.ogg'
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "batong"
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_lefthand.dmi'
