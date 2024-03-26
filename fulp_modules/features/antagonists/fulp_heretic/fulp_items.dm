@@ -114,6 +114,14 @@
 
 	var/mob/living/carbon/carb_target = target
 
+	if(IS_HERETIC_OR_MONSTER(carb_target))
+		return FALSE
+
+	for(var/obj/item/implant/mindshield/implant in carb_target.implants)
+		implant.removed(carb_target)
+		do_sparks(5,FALSE,carb_target)
+		return TRUE
+
 	carb_target.electrocute_act(5,src,flags = SHOCK_NOSTUN)
 	carb_target.gain_trauma(/datum/brain_trauma/special/beepsky, TRAUMA_RESILIENCE_BASIC)
 
@@ -121,9 +129,6 @@
 	if(record)
 		record.wanted_status = WANTED_ARREST
 		update_matching_security_huds(carb_target.name)
-
-	for(var/obj/item/implant/mindshield/implant in carb_target.implants)
-		implant.removed(carb_target)
 
 
 /obj/item/food/cake/fulp_ascension

@@ -187,8 +187,8 @@
 	name = "Charging of the Batong"
 	desc = "Allows you to transmute a stunbaton, a toy batong, a recharger and an arm to create a Charged Batong. \
 		This weapon fires battery charges. \
-		If hit, the victim will be set to arrest and have their mindshield broken. \
-		They will also be chased by imaginary securitrons."
+		If hit, the victim will be set to arrest and be chased by imaginary securitrons. \
+		A mindshield will absorb the charge, preventing these effects but breaking in the process."
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,
