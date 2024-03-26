@@ -16,6 +16,12 @@
  */
 #define PATH_FOOL "Fool Path"
 
+//set up our colors
+/datum/antagonist/heretic/New()
+	. = ..()
+	path_to_ui_color[PATH_FOOL] = "red"
+	path_to_rune_color[PATH_FOOL] = COLOR_MOSTLY_PURE_PINK
+
 /datum/heretic_knowledge/limited_amount/starting/base_beef
 	name = "Day of the Fool"
 	desc = "Opens up the Path of the Fool to you. \
