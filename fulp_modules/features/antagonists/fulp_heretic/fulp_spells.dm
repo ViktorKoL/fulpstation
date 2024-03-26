@@ -76,8 +76,8 @@
 	desc = "Grants any airlock sentience."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "mind_gate"
+	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
+	button_icon_state = "unhinge"
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS

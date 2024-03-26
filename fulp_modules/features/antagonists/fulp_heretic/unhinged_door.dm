@@ -106,8 +106,8 @@
 /datum/action/unhinged_door/open_close
 	name = "Toggle Door"
 	desc = "Open and close (violently)."
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "mind_gate"
+	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
+	button_icon_state = "unhinge"
 
 /datum/action/unhinged_door/open_close/Trigger(trigger_flags)
 	var/obj/machinery/door/airlock/form = linked_comp.parent
