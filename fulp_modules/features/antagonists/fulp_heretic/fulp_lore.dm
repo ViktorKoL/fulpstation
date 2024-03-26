@@ -16,7 +16,7 @@
  */
 #define PATH_FOOL "Fool Path"
 
-//set up our colors
+//first of all, set up our colors
 /datum/antagonist/heretic/New()
 	. = ..()
 	path_to_ui_color[PATH_FOOL] = "red"
@@ -29,7 +29,7 @@
 		You can only create two at a time. \
 		You can not break it like you would a normal sickly blade, but you can take a bite out of it to teleport to a random location. \
 		You can also feed it to heathens to force this effect upon them. \
-		Finally, it works as a kitchen knife, slicing food."
+		Finally, it works as a kitchen knife, slicing food with ease."
 	gain_text = "I have met a peculiar man today, a man made of beef. \
 		He claimed to work his job at fulpstation, and promised to show me around, one glorious day."
 	next_knowledge = list(/datum/heretic_knowledge/fulp_grasp)
@@ -51,7 +51,7 @@
 /datum/heretic_knowledge/fulp_grasp
 	name = "Bwoinking Grasp"
 	desc = "Your Mansus Grasp will now bwoink the victim."
-	gain_text = "The Moderators rule the Fulpites with their knowledge of the Variables and mastery of the Ban... \
+	gain_text = "The Moderators rule the Fulpites with their knowledge of the Variables and mastery of the Ban Hammer... \
 		This is just a little piece of their vast power, a mansus-tone which makes mortals tremble."
 	next_knowledge = list(/datum/heretic_knowledge/spell/door)
 	cost = 1
@@ -186,8 +186,9 @@
 /datum/heretic_knowledge/batong
 	name = "Charging of the Batong"
 	desc = "Allows you to transmute a stunbaton, a toy batong, a recharger and an arm to create a Charged Batong. \
-		This weapon fires placebo charges which convince anyone they hit that they have been mutilated. \
-		Details of this condition vary from heathen to heathen."
+		This weapon fires battery charges. \
+		If hit, the victim will be set to arrest and have their mindshield broken. \
+		They will also be chased by imaginary securitrons."
 	gain_text = "I asked \"where I charge batong\", and the Mentors answered me, and this is the answer, a horrifying rite..."
 	next_knowledge = list(
 		/datum/heretic_knowledge/blade_upgrade/fulp,

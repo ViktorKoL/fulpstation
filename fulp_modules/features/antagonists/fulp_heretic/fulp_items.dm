@@ -84,6 +84,7 @@
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_lefthand.dmi'
 	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_righthand.dmi'
 	inhand_icon_state = "batong"
+	max_charges = 1
 	//TODO: find out what file has staff worn icons
 	//worn_icon_state = "batong"
 	school = SCHOOL_FORBIDDEN
@@ -94,8 +95,9 @@
 	projectile_type = /obj/projectile/magic/batong
 
 /obj/projectile/magic/batong
-	name = "batong charge"
-	icon_state = "lavastaff"
+	name = "battery charge"
+	icon_state = "secbot-c"
+	icon = 'icons/mob/silicon/aibots.dmi'
 
 /obj/projectile/magic/batong/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -103,11 +105,18 @@
 	if(!iscarbon(target))
 		return FALSE
 
-	var/mob/living/carbon/victim = target
-	var/hypno_phrase = pick(world.file2list("fulp_modules/features/antagonists/fulp_heretic/batong_hypnosis.txt"))
+	var/mob/living/carbon/carb_target = target
 
-	victim.log_message("has been hypnotised with the objective '[hypno_phrase]' because of a charged batong", LOG_VICTIM, color="orange", log_globally = FALSE)
-	victim.gain_trauma(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hypno_phrase)
+	carb_target.electrocute_act(5,src,flags = SHOCK_NOSTUN)
+	carb_target.gain_trauma(/datum/brain_trauma/special/beepsky, TRAUMA_RESILIENCE_BASIC)
+
+	var/datum/record/crew/record = find_record(carb_target.name)
+	if(record)
+		record.wanted_status = WANTED_ARREST
+		update_matching_security_huds(carb_target.name)
+
+	for(var/obj/item/implant/mindshield/implant in carb_target.implants)
+		implant.removed(carb_target)
 
 
 /obj/item/food/cake/fulp_ascension
