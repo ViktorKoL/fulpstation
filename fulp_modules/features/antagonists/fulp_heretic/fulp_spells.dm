@@ -119,6 +119,92 @@
 		timeout = 5 SECONDS, \
 	)
 
+
+/datum/action/cooldown/spell/lag_spike
+	name = "Fulp Moment"
+	desc = "Momentarily freezes time for all heathens."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
+	button_icon_state = "unhinge"
+
+	school = SCHOOL_FORBIDDEN
+	//too annoying to have a short cooldown I imagine
+	cooldown_time = 2 MINUTES
+
+	invocation = "!ST'T'S"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = NONE
+
+	//we need Him to cast this spell
+	var/obj/tom_fulp/nexus
+
+	var/list/moment_lines = list(
+		"I DO NOT RESPOND TO THIS CHANNEL!",
+		"THIS IS MY MOMENT!",
+		"TOO MANY ACTIONS IN A MINUTE!",
+		"DREAMDAEMON HAS MISSED 3 HEARTBEATS!",
+	)
+
+	var/list/frozen
+
+/datum/action/cooldown/spell/lag_spike/Destroy()
+	unfreeze()
+
+/datum/action/cooldown/spell/lag_spike/can_cast_spell(feedback = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/turf/loc = get_turf(owner)
+	if(is_away_level(loc.z))
+		if(feedback)
+			owner.balloon_alert("Must be on the station!")
+		return FALSE
+
+
+	if(isnull(nexus))
+		if(feedback)
+			owner.balloon_alert("Cannot cast this spell without Tom Fulp!")
+		return FALSE
+
+	return TRUE
+
+/datum/action/cooldown/spell/lag_spike/cast(/mob/living/cast_on)
+	. = ..()
+
+	if(isnull(nexus))
+		return FALSE
+
+	do_teleport(nexus, get_turf(owner), no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = TRUE)
+	send_to_playing_players(span_narsie(pick(moment_lines)))
+	sound_to_playing_players('sound/magic/timeparadox2.ogg')
+
+	frozen = list()
+	for (var/mob/living/carbon/player in GLOB.player_list)
+		if(IS_HERETIC_OR_MONSTER(player))
+			continue
+
+		if(player.can_block_magic(antimagic_flags))
+			player.visible_message(
+				span_danger("[player] stumbles, but regains balance."),
+				span_danger("You briefly lose balance, as you feel the rest of the world has stopped moving!")
+			)
+			continue
+
+		player.Stun(5 SECONDS, ignore_canstun = TRUE)
+		player.add_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), TIMESTOP_TRAIT)
+		frozen += player
+
+	addtimer(CALLBACK(src, PROC_REF(unfreeze)), 5 SECONDS)
+
+/datum/action/cooldown/spell/lag_spike/proc/unfreeze()
+	for(var/mob/living/carbon/player in frozen)
+		if(QDELETED(player))
+			continue
+		player.remove_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), TIMESTOP_TRAIT)
+
+
 //debug spell
 /datum/action/cooldown/spell/hamster
 	name = "Go to the shadow realm"

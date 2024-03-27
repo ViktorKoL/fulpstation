@@ -281,6 +281,10 @@
 
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 
+	var/datum/action/cooldown/spell/lag_spike/fulp_spell = new(user.mind)
+	fulp_spell.nexus = tom
+	fulp_spell.Grant(user)
+
 	//cake
 	new /obj/structure/table/wood(loc)
 	new /obj/item/food/cake/fulp_ascension(loc)
