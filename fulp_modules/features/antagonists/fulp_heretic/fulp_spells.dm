@@ -126,7 +126,7 @@
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
-	button_icon_state = "unhinge"
+	button_icon_state = "fulp_moment"
 
 	school = SCHOOL_FORBIDDEN
 	//too annoying to have a short cooldown I imagine
