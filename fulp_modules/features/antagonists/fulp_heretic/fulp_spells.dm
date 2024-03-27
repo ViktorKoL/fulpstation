@@ -90,7 +90,7 @@
 		to_chat(owner,span_warning("The airlock is still searching for its spirit!"))
 		return FALSE
 	if(HAS_TRAIT(cast_on,TRAIT_UNHINGED))
-		to_chat(owner,span_warning("The airlock already has a spirit! Use your mansus grasp if you wish to banish it!"))
+		to_chat(owner,span_warning("The airlock already has a spirit!"))
 		return FALSE
 	if(istype(cast_on,/obj/machinery/door/airlock))
 		return TRUE
