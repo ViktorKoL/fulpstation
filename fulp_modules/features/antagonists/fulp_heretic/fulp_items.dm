@@ -77,6 +77,8 @@
 	fire_sound = 'sound/voice/beepsky/freeze.ogg'
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "batong"
+	worn_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_worn.dmi'
+	worn_icon_state = "batong"
 	lefthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_lefthand.dmi'
 	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_righthand.dmi'
 	inhand_icon_state = "batong"

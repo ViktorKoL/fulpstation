@@ -213,6 +213,7 @@
 //pony versions of wizard spells
 
 /datum/action/cooldown/spell/pointed/barnyardcurse/pony
+	name = "Eldritch Curse of the Barnyard"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -220,6 +221,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/pointed/projectile/lightningbolt/pony
+	name = "Eldritch Lightning Bolt"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -227,6 +229,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/aoe/knock/pony
+	name = "Eldritch Knock"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -234,6 +237,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/conjure/bee/pony
+	name = "Eldritch Summon Bees"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -241,6 +245,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/emp/disable_tech/pony
+	name = "Eldritch Emplosion"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -248,6 +253,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/aoe/magic_missile/pony
+	name = "Eldritch Magic Missile"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -255,6 +261,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/pony
+	name = "Eldritch Teleport"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -262,6 +269,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/summon_dancefloor/pony
+	name = "Eldritch Summon Dancefloor"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
@@ -269,6 +277,7 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/timestop/pony
+	name = "Eldritch Stop Time"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 
