@@ -158,16 +158,15 @@
 	if(!.)
 		return FALSE
 
+	if(QDELETED(nexus))
+		if(feedback)
+			owner.balloon_alert("Cannot cast this spell without Tom Fulp!")
+		return FALSE
+
 	var/turf/loc = get_turf(owner)
 	if(is_away_level(loc.z))
 		if(feedback)
 			owner.balloon_alert("Must be on the station!")
-		return FALSE
-
-
-	if(isnull(nexus))
-		if(feedback)
-			owner.balloon_alert("Cannot cast this spell without Tom Fulp!")
 		return FALSE
 
 	return TRUE

@@ -192,7 +192,7 @@
 
 /datum/heretic_knowledge/batong
 	name = "Charging of the Batong"
-	desc = "Allows you to transmute a stunbaton, a toy batong and a recharger to create a Charged Batong. \
+	desc = "Allows you to transmute a stunbaton, an arm and a recharger to create a Charged Batong. \
 		This weapon fires battery charges. \
 		If hit, the victim will be set to arrest and be chased by imaginary securitrons. \
 		A mindshield will absorb the charge, preventing these effects but breaking in the process."
@@ -205,7 +205,9 @@
 	)
 	required_atoms = list(
 		/obj/item/melee/baton/security = 1,
-		/obj/item/toy/plush/batong = 1,
+		//sadly, batong seems to be unobtainable...
+		//obj/item/toy/plush/batong = 1,
+		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 		/obj/machinery/recharger = 1,
 	)
 	result_atoms = list(/obj/item/gun/magic/staff/charged_batong)
