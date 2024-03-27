@@ -109,14 +109,17 @@
 	cast_on.balloon_alert(owner, "channeling a spirit...")
 	var/datum/component/spirit_holding/unhinged_door/added_component = cast_on.AddComponent(/datum/component/spirit_holding/unhinged_door)
 	ADD_TRAIT(cast_on,TRAIT_UNHINGED_SEARCHING,added_component)
-	var/datum/callback/to_call = CALLBACK(added_component, TYPE_PROC_REF(/datum/component/spirit_holding/unhinged_door, affix_spirit), owner)
-	cast_on.AddComponent(/datum/component/orbit_poll, \
-		ignore_key = POLL_IGNORE_HERETIC_MONSTER, \
-		job_bans = ROLE_PAI, \
-		to_call = to_call, \
-		title = "Spirit of [cast_on] at [get_area_name(get_area(cast_on))]", \
-		timeout = 5 SECONDS, \
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+		question = "Do you want to play as [span_notice("Spirit of [cast_on] at [get_area_name(get_area(cast_on))]")]?",
+		check_jobban = ROLE_PAI,
+		poll_time = 5 SECONDS,
+		checked_target = cast_on,
+		ignore_category = POLL_IGNORE_HERETIC_MONSTER,
+		alert_pic = cast_on,
+		role_name_text = "unhinged door",
+		chat_text_border_icon = cast_on,
 	)
+	added_component.affix_spirit(owner,chosen_one)
 
 
 /datum/action/cooldown/spell/lag_spike
