@@ -288,7 +288,6 @@
 	//cake
 	new /obj/structure/table/wood(loc)
 	new /obj/item/food/cake/fulp_ascension(loc)
-	new /obj/item/kitchen/fork(loc)
 
 /datum/heretic_knowledge/ultimate/fulp_final/proc/on_death(datum/source)
 	SIGNAL_HANDLER
