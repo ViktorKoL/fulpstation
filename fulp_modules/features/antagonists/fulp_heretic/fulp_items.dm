@@ -148,6 +148,19 @@
 	slice_type = /obj/item/food/cakeslice/fulp_ascension
 	crafting_complexity = FOOD_COMPLEXITY_5
 
+/obj/item/food/cake/fulp_ascension/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_TOOL_ACT(TOOL_KNIFE), PROC_REF(scream))
+
+/obj/item/food/cake/fulp_ascension/Destroy()
+	. = ..()
+	UnregisterSignal(src, list(COMSIG_ATOM_TOOL_ACT(TOOL_KNIFE)))
+
+/obj/item/food/cake/fulp_ascension/proc/scream(datum/source, mob/living/user, obj/item/I, list/mutable_recipes)
+	SIGNAL_HANDLER
+
+	manual_emote("screams")
+
 /obj/item/food/cakeslice/fulp_ascension
 	name = "ascension cake slice"
 	desc = "Share the taste of godhood with your heretic friends."
