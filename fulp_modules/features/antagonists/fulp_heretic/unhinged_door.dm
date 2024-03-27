@@ -49,7 +49,7 @@
 		action_to_grant.Grant(bound_spirit)
 		action_to_grant.linked_comp = src
 
-	//make the airlock unusable by any other means (TODO: make the wires unhackable probably)
+	//make the airlock unusable by any other means
 	thing.aiControlDisabled = AI_WIRE_DISABLED
 	thing.hackProof = TRUE
 	thing.opens_with_door_remote = FALSE
@@ -57,7 +57,6 @@
 		thing.req_access += ACCESS_MANSUS
 	else
 		thing.req_access = list(ACCESS_MANSUS)
-	//might want to restore these properties after banishing...
 
 /datum/component/spirit_holding/unhinged_door/proc/banish()
 	if(attempting_awakening)
@@ -94,7 +93,7 @@
 
 /datum/action/unhinged_door/ghost
 	name = "Return to the Shed"
-	desc = "Every door must one day close. Abandon this body and leave it once again as it was."
+	desc = "If you find your existence unfulfilling, you may leave this body behind and become a ghost once again."
 	button_icon = 'icons/mob/simple/mob.dmi'
 	button_icon_state = "ghost"
 

@@ -6,10 +6,12 @@
  * beef blade
  * bwoink grasp
  * unhinging glare
+ * 	side paths to mind gate and void cloak
  * beef mark
  * breakfast ritual
  * antagroll
  * placebo batong
+ * 	side paths to curse of corrosion and wave of desparation
  * slippery blade
  * pony summon
  * TOM FULP
@@ -40,6 +42,7 @@
 	)
 	route = PATH_START
 
+
 /datum/heretic_knowledge/limited_amount/starting/base_beef
 	name = "A Taste of Beef"
 	desc = "Opens up the Path of the Fool to you. \
@@ -58,6 +61,7 @@
 	result_atoms = list(/obj/item/melee/sickly_blade/beef)
 	route = PATH_FOOL
 
+//we need to load the map, for historic reasons we wait until research
 /datum/heretic_knowledge/limited_amount/starting/base_beef/on_research(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 
@@ -68,7 +72,7 @@
 
 /datum/heretic_knowledge/fulp_grasp
 	name = "Bwoinking Grasp"
-	desc = "Your Mansus Grasp will now bwoink the victim."
+	desc = "Your Mansus Grasp will now emit an audible bwoink."
 	gain_text = "The Moderators rule the Fulpites with their knowledge of the Variables and mastery of the Ban Hammer... \
 		This is just a little piece of their vast power, a mansus-tone which makes mortals tremble."
 	next_knowledge = list(/datum/heretic_knowledge/spell/door)
@@ -107,7 +111,7 @@
 	name = "Mark of Beef"
 	desc = "Your Mansus Grasp now applies the Mark of Beef. The mark is triggered from an attack with your Beefy Blade. \
 		When triggered, the victim will themselves become a beefman. \
-		If already a beefman, their surroundings will become meat instead."
+		If already a beefman or immune, their surroundings will become meat instead."
 	gain_text = "The Beefmen of Fulpstation see things other mortals do not and know every secret. \
 		That is the torture I will inflict upon those who oppose me. \
 		The beef is only more ravenous with each sacrifice..."
@@ -173,28 +177,13 @@
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	return
 
-/*
-/datum/heretic_knowledge/spell/chameleon
-	name = "Shrimphony of the Evaders"
-	desc = "Grants you Krillusion Veil - a spell that will disguise you as a shrimp plushie. \
-		If anyone tries to touch you or step on you, they will be hit by your mansus grasp and the disguise will be dropped."
-	gain_text = "So many souls have walked this path before... Lured in by a promise of power... Their journeys did not end well. \
-		They made mistakes... Went too far... Performed too many actions in a minute. \
-		This attracted the Administration's attention, and they were punished terribly. \
-		But this time will be different... I know how to evade their wrath by the means of a shrimphernal avatar..."
-	next_knowledge = list(/datum/heretic_knowledge/batong)
-	spell_to_add = /datum/action/cooldown/spell/chameleon
-	cost = 1
-	route = PATH_FOOL
-*/
-
 
 /datum/heretic_knowledge/spell/antagroll
 	name = "Method of the Mentors"
 	desc = "Grants you Rolling of the Antagonist, a spell that allows you to roll over and crush."
 	gain_text = "Madness of the Mentors knew no bounds. They searched for any way to escape the Basement, \
 		even throwing themselves into the gaping expanse of the void... \
-		But those few who returned did learn this valuable lesson..."
+		But this torture has taught them a valuable lesson..."
 	next_knowledge = list(/datum/heretic_knowledge/batong)
 	spell_to_add = /datum/action/cooldown/spell/pointed/antagroll
 	cost = 1
@@ -203,7 +192,7 @@
 
 /datum/heretic_knowledge/batong
 	name = "Charging of the Batong"
-	desc = "Allows you to transmute a stunbaton, a toy batong, a recharger and an arm to create a Charged Batong. \
+	desc = "Allows you to transmute a stunbaton, a toy batong and a recharger to create a Charged Batong. \
 		This weapon fires battery charges. \
 		If hit, the victim will be set to arrest and be chased by imaginary securitrons. \
 		A mindshield will absorb the charge, preventing these effects but breaking in the process."
@@ -218,7 +207,6 @@
 		/obj/item/melee/baton/security = 1,
 		/obj/item/toy/plush/batong = 1,
 		/obj/machinery/recharger = 1,
-		list(/obj/item/bodypart/arm/left, /obj/item/bodypart/arm/right) = 1,
 	)
 	result_atoms = list(/obj/item/gun/magic/staff/charged_batong)
 	cost = 1
@@ -243,7 +231,7 @@
 /datum/heretic_knowledge/summon/pony
 	name = "Magic of the Friendship"
 	desc = "Allows you to transmute two slabs of meat, a crayon and a heart to create a pony. \
-		Ponies come in many variants with unpredictable spells, but they can always crush heathens."
+		Ponies come in many variants with unpredictable spells, but they always excel at crushing heathens."
 	gain_text = "The Administrators showed me the tools of their craft, \
 		and the ways of creation of monsters I would never have imagined before. \
 		They wield an ancient and terrible magic that now is mine to command..."
@@ -299,6 +287,7 @@
 
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 
+	//the lag spike spell
 	var/datum/action/cooldown/spell/lag_spike/fulp_spell = new(user.mind)
 	fulp_spell.nexus = tom
 	fulp_spell.Grant(user)

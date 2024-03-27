@@ -1,3 +1,4 @@
+//beef blade for path of fool
 /obj/item/melee/sickly_blade/beef
 	name = "\improper beefy blade"
 	desc = "It's a rag-tag patchwork of beef crudely arranged in the shape of a sickle. \
@@ -29,12 +30,13 @@
 		say("I am a quick learner when it comes to throwing and strangling people I see.")
 
 /obj/item/melee/sickly_blade/beef/attack_self(mob/user)
-	to_chat(user, span_warning("[src] is too squishy to shatter with hands! Try using your teeth..."))
+	to_chat(user, span_warning("[src] is too squishy to shatter with hands! Try taking a bite..."))
 
 /obj/item/melee/sickly_blade/beef/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/edible, initial_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/eldritch = 5), foodtypes = MEAT | GROSS, after_eat = CALLBACK(src, PROC_REF(took_bite)))
 
+//the same thing normal blades do on use in hand
 /obj/item/melee/sickly_blade/beef/proc/took_bite(mob/eater, mob/feeder)
 	var/turf/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 	if(do_teleport(eater, safe_turf, channel = TELEPORT_CHANNEL_MAGIC))
@@ -49,15 +51,8 @@
 
 	playsound(src, 'sound/effects/meatslap.ogg', 70, TRUE)
 
-/*
-/obj/item/melee/sickly_blade/beef/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, gentle = FALSE, quickstart = TRUE)
 
-
-/obj/item/melee/sickly_blade/beef/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(isliving(hit_atom))
-		took_bite(hit_atom, )
-*/
-
+//the breakfast you get for finishing the knowledge ritual, instead of knowledge points
 /obj/item/food/salad/eldritch
 	name = "4 point pops balanced breakfast"
 	desc = "Crunchy, sweetened, eyeball-shaped corn cereal! Best served with bacon, eggs, and orange juice. A balanced breakfast straight from the depths of Mansus, all organically sourced from the Wood."
@@ -72,12 +67,13 @@
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
 
-	. += span_hypnophrase("It's a breakfast cereal. There's barely anything supernatural about it.")
+	. += span_hypnophrase("I was promised four knowledge points, and all I got was this cereal.")
 
 
+//magic staff for fool heretics
 /obj/item/gun/magic/staff/charged_batong
-	name = "batong (CHARGED)"
-	desc = "A twisted appendage resembling a normal security baton, at a glance. Some kind of charge can be felt in the air around its tip."
+	name = "charged batong"
+	desc = "It has reached its true potential."
 	fire_sound = 'sound/voice/beepsky/freeze.ogg'
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "batong"
@@ -131,6 +127,7 @@
 		update_matching_security_huds(carb_target.name)
 
 
+//reward for ascending
 /obj/item/food/cake/fulp_ascension
 	name = "ascension cake"
 	desc = "Congratulations! We knew you can do it!"
@@ -140,7 +137,7 @@
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/sprinkles = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
-		/datum/reagent/eldritch = 15,
+		/datum/reagent/eldritch = 50,
 	)
 	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
 	//do note that if you get to eat this you are almost certainly a beefman, and they find this disgusting. I will not fix it.
@@ -156,6 +153,7 @@
 	. = ..()
 	UnregisterSignal(src, list(COMSIG_ATOM_TOOL_ACT(TOOL_KNIFE)))
 
+//this is funny I think
 /obj/item/food/cake/fulp_ascension/proc/scream(datum/source, mob/living/user, obj/item/I, list/mutable_recipes)
 	SIGNAL_HANDLER
 
@@ -163,14 +161,14 @@
 
 /obj/item/food/cakeslice/fulp_ascension
 	name = "ascension cake slice"
-	desc = "Share the taste of godhood with your heretic friends."
+	desc = "Share the taste of godhood with your heretic friends, or minions, or whatever you have."
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/items.dmi'
 	icon_state = "cake_slice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/sprinkles = 1,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
-		/datum/reagent/eldritch = 3,
+		/datum/reagent/eldritch = 10,
 	)
 	tastes = list("cake" = 5, "sweetness" = 1, "victory" = 5)
 	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR

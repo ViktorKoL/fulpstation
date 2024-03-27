@@ -6,11 +6,11 @@
 	icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/pony.dmi'
 	icon_state = "pony"
 	gender = NEUTER
-	health = 150
-	maxHealth = 150
+	health = 100
+	maxHealth = 100
 	obj_damage = 60
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 5
+	melee_damage_upper = 15
 	response_help_continuous = "prods"
 	response_help_simple = "prod"
 	response_disarm_continuous = "challenges"

@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/pointed/antagroll
 	name = "Rolling of the Antagonist"
-	desc = "Call on the forbidden magicks of the Mansus to roll over, crushing anyone in your way. \
-		Can be used even in cuffs, because funny."
+	desc = "Call on the forbidden magicks of the Mansus to roll over, crushing anyone in your way."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
@@ -82,7 +81,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
-	invocation = "H' H'LLO H' H'LLO"
+	invocation = "L'T ME 'N"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -144,11 +143,14 @@
 		"THIS IS MY MOMENT!",
 		"TOO MANY ACTIONS IN A MINUTE!",
 		"DREAMDAEMON HAS MISSED 3 HEARTBEATS!",
+		"HAMSTER DIED",
+		"I HAVE COME TO CLAIM THESE NEW GROUNDS",
 	)
 
 	var/list/frozen
 
 /datum/action/cooldown/spell/lag_spike/Destroy()
+	. = ..()
 	unfreeze()
 
 /datum/action/cooldown/spell/lag_spike/can_cast_spell(feedback = TRUE)
@@ -204,145 +206,6 @@
 			continue
 		player.remove_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), TIMESTOP_TRAIT)
 
-
-//debug spell
-/datum/action/cooldown/spell/hamster
-	name = "Go to the shadow realm"
-	desc = "Debug haha"
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
-	button_icon_state = "mind_gate"
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/hamster/cast(mob/living/cast_on)
-	. = ..()
-
-	var/datum/antagonist/heretic/our_heretic = cast_on.mind?.has_antag_datum(/datum/antagonist/heretic)
-	var/obj/effect/landmark/heretic/destination_landmark = GLOB.heretic_sacrifice_landmarks[our_heretic.heretic_path] || GLOB.heretic_sacrifice_landmarks[PATH_START]
-	var/turf/destination = get_turf(destination_landmark)
-	do_teleport(cast_on, destination, asoundin = 'sound/magic/repulse.ogg', asoundout = 'sound/magic/blind.ogg', no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = TRUE)
-
-
-//old unused antag roll jaunt
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll
-	name = "Rolling of the Antagonist (OLD)"
-	desc = "A spell that allows you pass unimpeded through some walls. Might be short, might be long, the forces of the Roll are unpredictable."
-	invocation = "I wanna antagroll"
-	invocation_type = INVOCATION_SHOUT
-	button_icon = 'fulp_modules/features/antagonists/fulp_heretic/icons/spells.dmi'
-	button_icon_state = "jaunt"
-	//I think they deserve to be notified when it ends. I wanted to do the waterphone but it's not in the files and I don't care that much.
-	exit_jaunt_sound = 'sound/ambience/antag/thatshowfamiliesworks.ogg'
-
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll/before_cast(atom/cast_on)
-	. = ..()
-
-	jaunt_duration = rand(1 SECONDS, 15 SECONDS)
-
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/antagroll/can_cast_spell(feedback = TRUE)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(isspaceturf(get_turf(owner)) || ismiscturf(get_turf(owner)))
-		return TRUE
-	if(feedback)
-		to_chat(owner, span_warning("You must stand on a space or misc turf!"))
-	return FALSE
-
-
-//unused shrimp spell
-//code partially copied from chameleon projector and adapted
-/datum/action/cooldown/spell/chameleon
-	name = "Krillusion Veil"
-	desc = "Masks you as a shrimp plushie that will mansus grasp anyone who dares touch you."
-	background_icon_state = "bg_heretic"
-	overlay_icon_state = "bg_heretic_border"
-	button_icon = 'fulp_modules/features/toys/icons/toys.dmi'
-	button_icon_state = "shrimp"
-	cooldown_time = 30 SECONDS
-
-	school = SCHOOL_FORBIDDEN
-	spell_requirements = NONE
-
-	var/obj/effect/dummy/shrimp/dummy = FALSE
-
-/datum/action/cooldown/spell/chameleon/can_cast_spell(feedback = TRUE)
-	. = ..()
-
-	if(!.)
-		return FALSE
-
-	if(isturf(owner.loc) || istype(owner.loc, /obj/structure) || dummy)
-		return TRUE
-	if(feedback)
-		to_chat(owner, span_warning("You can't shrimp while inside something!"))
-	return FALSE
-
-/datum/action/cooldown/spell/chameleon/cast(mob/living/user)
-	to_chat(world,"starting parent cast")
-	. = ..()
-	to_chat(world,"finished parent cast as [.]")
-
-	to_chat(world,"toggling, dummy is [dummy]")
-	if(dummy)
-		to_chat(world,"removing dummy...")
-		eject()
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, TRUE, -6)
-		qdel(dummy)
-		dummy = null
-		to_chat(user, span_notice("We are once again unkrilled."))
-	else
-		to_chat(world,"creating dummy...")
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, TRUE, -6)
-		dummy = new/obj/effect/dummy/shrimp(user.drop_location())
-		dummy.activate(user)
-		to_chat(user, span_notice("We shrimp ourselves."))
-	user.cancel_camera()
-
-/datum/action/cooldown/spell/chameleon/proc/eject()
-	owner.forceMove(dummy.loc)
-	owner.reset_perspective(null)
-
-/obj/effect/dummy/shrimp
-	name = ""
-	desc = ""
-	density = FALSE
-	var/can_move = 0
-	var/obj/item/chameleon/master = null
-
-/obj/effect/dummy/shrimp/proc/activate(mob/M)
-	var/obj/item/toy/plush/shrimp/shrimp = /obj/item/toy/plush/shrimp
-	appearance = shrimp.appearance
-
-	if(istype(M.buckled, /obj/vehicle))
-		var/obj/vehicle/V = M.buckled
-		V.unbuckle_mob(M, force = TRUE)
-	M.forceMove(src)
-
-/*
-/obj/effect/dummy/chameleon/attackby()
-	master.disrupt()
-
-/obj/effect/dummy/shrimp/attack_hand(mob/user, list/modifiers)
-	master.disrupt()
-
-/obj/effect/dummy/shrimp/attack_animal(mob/user, list/modifiers)
-	master.disrupt()
-
-/obj/effect/dummy/shrimp/attack_alien(mob/user, list/modifiers)
-	master.disrupt()
-
-/obj/effect/dummy/shrimp/ex_act(S, T)
-	master.disrupt()
-	return TRUE
-
-/obj/effect/dummy/shrimp/bullet_act()
-	. = ..()
-	master.disrupt()
-*/
 
 
 //pony versions of wizard spells

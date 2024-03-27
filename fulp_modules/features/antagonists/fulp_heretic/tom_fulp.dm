@@ -1,3 +1,4 @@
+//all of this code is made with Narsie as a reference
 /obj/tom_fulp
 	name = "Tom Fulp"
 	gender = MALE
