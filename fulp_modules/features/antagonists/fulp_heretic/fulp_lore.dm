@@ -22,8 +22,26 @@
 	path_to_ui_color[PATH_FOOL] = "red"
 	path_to_rune_color[PATH_FOOL] = COLOR_MOSTLY_PURE_PINK
 
-/datum/heretic_knowledge/limited_amount/starting/base_beef
+//a special knowledge that locks all the other paths
+/datum/heretic_knowledge/fool_lock
 	name = "Day of the Fool"
+	desc = "Locks all the paths other than Path of the Fool to you."
+	gain_text = "Once a year, the Mansus-gates align. All the doors shut and the pathways barred... \
+		But a different path opens, one only a fool would walk..."
+	banned_knowledge = list(
+		/datum/heretic_knowledge/limited_amount/starting/base_ash,
+		/datum/heretic_knowledge/limited_amount/starting/base_flesh,
+		/datum/heretic_knowledge/limited_amount/starting/base_rust,
+		/datum/heretic_knowledge/limited_amount/starting/base_void,
+		/datum/heretic_knowledge/limited_amount/starting/base_blade,
+		/datum/heretic_knowledge/limited_amount/starting/base_cosmic,
+		/datum/heretic_knowledge/limited_amount/starting/base_knock,
+		/datum/heretic_knowledge/limited_amount/starting/base_moon,
+	)
+	route = PATH_START
+
+/datum/heretic_knowledge/limited_amount/starting/base_beef
+	name = "A Taste of Beef"
 	desc = "Opens up the Path of the Fool to you. \
 		Allows you to transmute a slab of meat and a knife into the beefblade. \
 		You can only create two at a time. \
