@@ -81,9 +81,8 @@
 	righthand_file = 'fulp_modules/features/antagonists/fulp_heretic/icons/batong_righthand.dmi'
 	inhand_icon_state = "batong"
 	max_charges = 1
-	//TODO: find out what file has staff worn icons
-	//worn_icon_state = "batong"
 	school = SCHOOL_FORBIDDEN
+	w_class = WEIGHT_CLASS_NORMAL
 
 	ammo_type = /obj/item/ammo_casing/magic/batong
 
