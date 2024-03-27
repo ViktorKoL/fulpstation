@@ -164,7 +164,7 @@
 		return FALSE
 
 	var/turf/loc = get_turf(owner)
-	if(is_away_level(loc.z))
+	if(!is_station_level(loc.z))
 		if(feedback)
 			owner.balloon_alert("Must be on the station!")
 		return FALSE
@@ -174,7 +174,7 @@
 /datum/action/cooldown/spell/lag_spike/cast(/mob/living/cast_on)
 	. = ..()
 
-	if(isnull(nexus))
+	if(QDELETED(nexus))
 		return FALSE
 
 	do_teleport(nexus, get_turf(owner), no_effects = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = TRUE)
